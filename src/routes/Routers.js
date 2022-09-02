@@ -12,7 +12,8 @@ import Contact from '../views/Contact'
 
 
 const Routers = () => {
-    return <Routes>
+    return (
+    <Routes>
         <Route path='/' element={<Navigate to='/home'/>}/>
         <Route path='/home' element={<Home/>}/>
         <Route path='/foods' element={<Foods/>}/>
@@ -23,6 +24,7 @@ const Routers = () => {
         <Route path='/register' element={<Register/>}/>
         <Route path='/contact' element={<Contact/>}/>
     </Routes>
+    )
 }
 
 export default Routers;

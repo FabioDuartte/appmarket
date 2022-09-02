@@ -6,13 +6,13 @@ import 'bootstrap/dist/css/bootstrap.css';
 import 'remixicon/fonts/remixicon.css';
 import './index.css';
 import { BrowserRouter as Router } from 'react-router-dom';
-import Routers from './routes/Routers'
+//import Routers from './routes/Routers'
 
 ReactDOM.render(
   <React.StrictMode>
-    <Routers>
+    <Router>
       <App />
-    </Routers>
+    </Router>
   </React.StrictMode>,
   document.getElementById("root")
 );

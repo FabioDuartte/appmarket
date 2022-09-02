@@ -1,0 +1,82 @@
+.footer{
+    padding: 50px 0px;
+    background: #b0c055;
+}
+
+.footerLogo img{
+    width:40%;
+    border-radius: 50%;
+    margin-bottom: 5px;
+
+}
+
+.footerLogo h5{
+    font-weight: 600;
+    font-size: 1rem;
+    margin-top: 15px;
+}
+
+.footerLogo p{
+    font-size: 0,9rem;
+    color: #333;
+    line-height: 28px;
+}
+
+.deliveryTimeItem{
+    background: transparent !important;
+}
+
+.deliveryTimeItem span, p{
+    font-weight: 600;
+    font-size: 1rem;
+    color: #212245;
+}
+
+.footerTitle{
+    font-weight: 600;
+    font-size: 1.1rem;
+    color: #212245;
+}
+
+.newsletter{
+    padding: 5px;
+    border: 1px solid #212245;
+    border-radius: 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.newsletter input{
+    background: transparent;
+    border: none;
+    outline: none;
+}
+
+.newsletter input:focus{
+    outline: none;
+}
+
+.newsletter span{
+    background: #f53766;
+    padding: 5px 30px;
+    border-radius: 5px;
+    
+}
+
+.newsletter span i{
+    color: #fff;
+}
+
+.newsletter input::placeholder{
+    color: #212245;
+}
+
+.socialMedia span i{
+    padding: 5px;
+    cursor: pointer;
+    background: #f53766;
+    color: #fff;
+    font-size: 20px;
+    border-radius: 50%;
+}
