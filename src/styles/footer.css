@@ -52,6 +52,25 @@
     border: none;
     outline: none;
 }
+.associate{
+   line-height: -3;
+}
+.associate button{
+    background: #f53766;
+    padding: 8px 36%;
+    border-radius: 5px;    
+    line-height: -12;
+    margin-top: 5;
+    color: #fff;
+    outline: auto;
+    font-weight: bold;
+    letter-spacing: 1px;
+    
+}
+.associate button:hover{
+    background: black;
+    
+}
 
 .newsletter input:focus{
     outline: none;

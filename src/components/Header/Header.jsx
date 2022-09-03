@@ -11,11 +11,11 @@ const navLinks = [
         path: '/home'
     },
     {
-        display: 'Foods',
+        display: 'Estoque',
         path: '/foods'
     },
     {
-        display: 'Cart',
+        display: 'Mercados',
         path: '/cart'
     },
     {
@@ -56,10 +56,10 @@ const Header = () => {
 
             {/*********ÍCONES DE NAVEGAÇÃO****/}
             <div className="navRight d-flex align-items-center gap-4">
-                <span className="cartIcon">
+                {/* <span className="cartIcon">
                     <i class="ri-shopping-cart-line"></i>
                     <span className="cartItem">2</span>
-                </span>
+                </span> */}
 
                 <span className="user">
                     <Link to='/login'><i class="ri-user-line"></i></Link>

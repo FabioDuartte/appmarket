@@ -1,0 +1,30 @@
+.featureSubtilte{
+    color: #df2020;
+    font-weight: bold;
+}
+.featureTilte span{
+    color: #df2020;
+    
+}
+
+.foodCategory{
+    background: #df2020;
+    text-align: center;
+    margin-top: 30px;
+    padding: 20px 0px;
+    border-radius: 8px;
+}
+.foodCategory button{
+    border: none;
+    outline: none;
+    padding: 7px 20px;
+    background: transparent;
+    color: #fff;
+    font-size: 20px;
+}
+
+.foodBtnActive{
+    background: #fff !important; 
+    border-radius: 5px;
+    color: #df2020  !important;
+}
