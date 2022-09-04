@@ -28,3 +28,70 @@
     border-radius: 5px;
     color: #df2020  !important;
 }
+
+@media only screen and (max-width: 1000px) {
+    .heroContent h5 {
+      font-size: 1rem;
+    }
+  
+    .heroContent p {
+      font-size: 0.8rem;
+      line-height: 25px;
+    }
+  
+    .heroTitle {
+      font-size: 1.5rem;
+      line-height: 40px;
+    }
+  
+    .heroBtns button {
+      padding: 5px 15px;
+      font-size: 0.7rem;
+    }
+  
+    .heroService p {
+      font-size: 0.7rem !important;
+    }
+  
+    .featureItem h5 {
+      font-size: 0.9rem;
+    }
+  
+    .featureItem p {
+      font-size: 0.8rem;
+      margin-bottom: 0;
+    }
+  
+    .featureSubtitle {
+      font-size: 1rem;
+    }
+    .featureText {
+      font-size: 0.8rem;
+      margin-bottom: 0;
+    }
+  
+    .foodCategory {
+      padding: 15px;
+    }
+    .foodCategory button {
+      padding: 5px 15px;
+      font-size: 0.7rem;
+    }
+  
+  }
+  @media only screen and (max-width: 576px) {
+    .heroContent {
+      text-align: center;
+    }
+  
+    .heroBtns {
+      justify-content: center;
+    }
+  
+    .heroService {
+      justify-content: center;
+    }
+    .why__choose-us {
+      padding-top: 0 !important;
+    }
+  }
