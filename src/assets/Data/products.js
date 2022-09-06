@@ -101,7 +101,7 @@ const products = [
 
   {
     id: "09",
-    title: "Coxinha",
+    title: "Arroz",
     price: 110.0,
     image: product02,
     category: "Padaria",
@@ -112,7 +112,7 @@ const products = [
 
   {
     id: "10",
-    title: "Caixa de maçã",
+    title: "Feijão",
     price: 24.0,
     image: product01,
     category: "Hortifruit",
@@ -134,7 +134,7 @@ const products = [
 
   {
     id: "12",
-    title: "Coxinha",
+    title: "Carne",
     price: 35.0,
     image: product02,
     category: "Carnes",
@@ -145,7 +145,7 @@ const products = [
 
   {
     id: "13",
-    title: "Caixa de maçã",
+    title: "Abacaxi",
     price: 35.0,
     image: product01,
     category: "Congelados",

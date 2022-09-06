@@ -1,0 +1,13 @@
+.searchBar, .sortingSearch select {
+    padding: 7px 15px;
+    border: 1px solid grey;
+    border-radius: 5px;
+}
+
+.searchBar input {
+    border: none;
+}
+
+.searchBar input:focus{
+    outline: none;
+}
