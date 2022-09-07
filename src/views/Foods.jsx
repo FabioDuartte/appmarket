@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from "react";
+import React, {useState} from "react";
 import Helmet from '../components/Helmet/Helmet';
 import CommonSection from "../components/UI/commomSection/CommonSection";
 import { Container, Row, Col } from "reactstrap";
@@ -14,8 +14,7 @@ const Foods = () => {
 
     const searchedProduct = products.filter((item)=>{
         if (searchTerm.value === "") return item;
-        if (item.title.toLowerCase().includes(searchTerm.toLowerCase()) || item.location.toLowerCase().includes(searchTerm.toLowerCase())) return item
-       
+        if (item.title.toLowerCase().includes(searchTerm.toLowerCase()) || item.location.toLowerCase().includes(searchTerm.toLowerCase())) return item;
     })
 
 

@@ -94,7 +94,7 @@ const Home = () => {
             <Container>
                 <Row>
                     <Col lg='12' className="text-center">
-                        <h2>Os mais pedidos</h2>
+                        <h2>Os mais baratos</h2>
                     </Col>
                     <Col lg='12'>
                         <div className="foodCategory d-flex align-items-center justify-content-center gap-5">

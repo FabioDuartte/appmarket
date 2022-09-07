@@ -13,6 +13,10 @@
     object-fit: contain;
 }
 
+.navigation{
+  font-weight: bold !important;
+}
+
 .logo h5{
     font-weight: 600;
     font-size: 1rem;
@@ -21,12 +25,7 @@
     margin-bottom: 0;
 }
 
-.menu a{
-    font-weight: 600;
-    font-size: 2rem;
-    color: #212245; 
-    transition: 0.3s;   
-}
+
 
 .menu a:hover{
     color:#df2020;
@@ -60,7 +59,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-}
+  }
 
 .menuHamburguer {
     font-weight: 600;

@@ -25,7 +25,6 @@
     cursor: pointer;
     font-weight: 600;
   }
-  
   .orderBtn {
     background: #df2020;
     color: #fff;
@@ -37,11 +36,12 @@
   }
   .allFoods-btn {
     background: transparent;
-    border: 1px solid #df2020 !important;
+    border: 1px solid #df2020 !important;    
   }
   
   .allFoods-btn a {
     color: #df2020;
+    text-decoration: none !important;
   }
   
   .heroService p {
