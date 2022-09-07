@@ -2,23 +2,23 @@ import React, {useState} from "react";
 import Helmet from '../components/Helmet/Helmet';
 import CommonSection from "../components/UI/commomSection/CommonSection";
 import { Container, Row, Col } from "reactstrap";
-import products from '../assets/Data/products';
-import ProductCard from '../components/UI/ProductCard/ProductCard';
+import markets from '../assets/Data/markets';
+import MarketCard from "../components/UI/marketCard/marketCard";
 import ReactPaginate from 'react-paginate';
-import '../styles/foods.css';
+import '../styles/marketCard.css';
 import '../styles/pagination.css';
 
-const Foods = () => {
+const Market = () => {
     const [searchTerm, setSearchTerm] = useState('');
     const [pageNumber, setPagNumber] = useState(0);
 
-    const searchedProduct = products.filter((item)=>{
+    const searchedProduct = markets.filter((item)=>{
         if (searchTerm.value === "") return item;
-        if (item.title.toLowerCase().includes(searchTerm.toLowerCase()) || item.location.toLowerCase().includes(searchTerm.toLowerCase())) return item;
+        if (item.name.toLowerCase().includes(searchTerm.toLowerCase()) || item.adress.toLowerCase().includes(searchTerm.toLowerCase())) return item;
     })
 
 
-    const productPerPage = 8
+    const productPerPage = 2
     const visitedPage = pageNumber * productPerPage
     const displayPage = searchedProduct.slice(visitedPage, visitedPage + productPerPage)
 
@@ -62,7 +62,7 @@ const Foods = () => {
                         
                         .map((item) => ( 
                            <Col lg="3" md="4" sm="6" xs="6" key={item.id} className="mb-4">
-                        <ProductCard item={item}/></Col>
+                        <MarketCard item={item}/></Col>
                         ))}
                         
                         <div>
@@ -84,4 +84,4 @@ const Foods = () => {
     
 };
 
-export default Foods;
+export default Market;

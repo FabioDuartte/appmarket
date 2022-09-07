@@ -18,11 +18,11 @@ const navLinks = [
     },
     {
         display: 'Mercados',
-        path: '/cart'
+        path: '/market'
     },
     {
         display: 'Cadastrar Produtos',
-        path: '/contact'
+        path: '/registerProducts'
     },
 ]
 

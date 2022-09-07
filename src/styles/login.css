@@ -1,6 +1,20 @@
-.color{
- 
-    font-size: 16px;
-    font-weight: bold;  
+.buttonMedia {
+    width: 100%;    
+    background: white;    
     
+}
+
+.buttonMedia button{
+}
+
+.buttonMedia i{
+    font-size: 22px;
+}
+
+.checkbox Link{
+    text-decoration: none;
+    font-size: 22px;
+}
+.input {
+    border: 0.5px;
 }
