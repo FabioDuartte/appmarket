@@ -1,9 +1,11 @@
 import React, { useRef } from "react";
 
-import { Container } from "reactstrap"
+// import { Container } from "reactstrap"
 import logo from '../../assets/logo.png'
 import { NavLink, Link } from 'react-router-dom'
 import Dropdown from 'react-bootstrap/Dropdown';
+import { Container, Row, Col, Button } from 'reactstrap';
+
 
 
 
@@ -41,7 +43,17 @@ const Header = () => {
 
 
                 {/**********MENU**************/}
-                <div className="navigation" ref={menuRef} onClick={toggleMenu}>
+                
+                <div>
+                    <Row>
+                        <Col lg='12' md='12' className="d-flex align-items-center justify-content-between gap-5">
+                            <Link to='/home'><Button outline color="primary" size="md" className="">Home</Button></Link>
+                            <Link to='/foods'><Button outline color="success" size="md">Produtos</Button></Link>
+                            <Link to='market'><Button outline color="danger" size="md">Mercados</Button></Link>
+                        </Col>
+                    </Row>
+                </div>
+                {/* <div className="navigation" ref={menuRef} onClick={toggleMenu}>
                     <div className="menu d-flex align-items-center gap-5 color">
                         {navLinks.map((item, index) => (
                             <NavLink
@@ -53,7 +65,7 @@ const Header = () => {
                             </NavLink>
                         ))}
                     </div>
-                </div>
+                </div> */}
 
                 {/*********ÍCONES DE NAVEGAÇÃO****/}
                 <div className="navRight d-flex align-items-center gap-4">
@@ -70,7 +82,8 @@ const Header = () => {
 
                             <Dropdown.Menu open>
                                 <Dropdown.Item href="/login">Login</Dropdown.Item>
-                                <Dropdown.Item href="/register">Cadastrar</Dropdown.Item>
+                                <Dropdown.Item href="/registerProducts">Cadastrar Produtos</Dropdown.Item>
+                                <Dropdown.Item href="/manager">Gerenciar</Dropdown.Item>
                                 <Dropdown.Divider />                    
                                 <Dropdown.Item href="#/action-2">Sair</Dropdown.Item>
                             </Dropdown.Menu>

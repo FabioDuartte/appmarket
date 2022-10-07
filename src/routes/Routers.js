@@ -4,7 +4,7 @@ import Home from '../views/Home'
 import Foods from '../views/Foods'
 import FoodDetail from '../views/FoodDetail'
 import Market  from '../views/Market'
-import Checkout from '../views/Checkout'
+import Manager from '../views/Manager'
 import Login from '../views/Login'
 import Register from '../views/Register'
 import RegisterProducts from '../views/RegisterProducts'
@@ -19,7 +19,7 @@ const Routers = () => {
         <Route path='/foods' element={<Foods/>}/>
         <Route path='/foods/:id' element={<FoodDetail/>}/>
         <Route path='/market' element={<Market/>}/>
-        <Route path='/checkout' element={<Checkout/>}/>
+        <Route path='/manager' element={<Manager/>}/>
         <Route path='/login' element={<Login/>}/>
         <Route path='/register' element={<Register/>}/>
         <Route path='/registerProducts' element={<RegisterProducts/>}/>

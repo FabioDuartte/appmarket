@@ -29,7 +29,7 @@ const Login = () => {
                             </FormGroup>
                             {' '}
                             <Button className="w-100" variant="outline-success" size="lg">Entrar</Button>
-                            <Button className="mt-3 w-100" variant="outline-danger" size="lg"><Link to='/register'>Criar uma conta</Link></Button>
+                            {/* <Button className="mt-3 w-100" variant="outline-danger" size="lg"><Link to='/register'>Criar uma conta</Link></Button> */}
                                                         
                             <Form.Group className="checkBox d-flex align-items center justify-content-between mt-4" controlId="formBasicCheckbox">
                                 <Form.Check type="checkbox" label="Manter-me logado" />

@@ -90,7 +90,7 @@ const Home = () => {
             </Container>
         </section>
 
-        <section>
+        {/* <section>
             <Container>
                 <Row>
                     <Col lg='12' className="text-center">
@@ -103,7 +103,6 @@ const Home = () => {
                             <button className= {`d-flex align-items-center gap-2 ${category === 'Carnes' ? 'foodBtnActive' : ''  }`} onClick={() => setCategory("Carnes")}>Carnes</button>
                             <button className= {`d-flex align-items-center gap-2 ${category === 'Padaria' ? 'foodBtnActive' : ''  }`} onClick={() => setCategory("Padaria")}>Padaria</button>
                             <button className= {`d-flex align-items-center gap-2 ${category === 'Congelados' ? 'foodBtnActive' : ''  }`} onClick={() => setCategory("Congelados")}>Congelados</button>
-
                         </div>
                     </Col>
 
@@ -115,7 +114,7 @@ const Home = () => {
                     
                 </Row>
             </Container>
-        </section>
+        </section> */}
 
     </Helmet>
     )
