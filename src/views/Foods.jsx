@@ -11,6 +11,17 @@ import '../styles/pagination.css';
 const Foods = () => {
     const [searchTerm, setSearchTerm] = useState('');
     const [pageNumber, setPagNumber] = useState(0);
+    const [lista, setLista] = useState(products);
+
+    const handleOrderClick = () => {
+
+        let newList = [...lista];
+        newList.sort((a,d) =>(a.title > d.title)?1:(d.title > a.title)?-1:0);
+        setLista(newList);
+        console.log(newList);
+
+    }
+
 
     const searchedProduct = products.filter((item)=>{
         if (searchTerm.value === "") return item;
@@ -48,9 +59,10 @@ const Foods = () => {
                         </Col>
                         <Col lg="6" md="6" sm="6" className="mb-5">
                             <div className="sortingSearch text-end">
+                                <button onClick={handleOrderClick}>Ordenar</button>
                                 <select className="w-50">
                                     <option>Ordenar por</option>
-                                    <option value="crescente">Alfabética, A-Z</option>
+                                    <option value="crescente" onSelect={handleOrderClick}>Alfabética, A-Z</option>
                                     <option value="decrescente">Alfabética, Z-A</option>
                                     {/* <option value=""></option>
                                     <option value=""></option> */}
@@ -60,9 +72,9 @@ const Foods = () => {
 
                         {displayPage
                         
-                        .map((item) => ( 
-                           <Col lg="3" md="4" sm="6" xs="6" key={item.id} className="mb-4">
-                        <ProductCard item={item}/></Col>
+                        .map((lista) => ( 
+                           <Col lg="3" md="4" sm="6" xs="6" key={lista.id} className="mb-4">
+                        <ProductCard item={lista}/></Col>
                         ))}
                         
                         <div>

@@ -18,7 +18,7 @@ const Market = () => {
     })
 
 
-    const productPerPage = 2
+    const productPerPage = 8
     const visitedPage = pageNumber * productPerPage
     const displayPage = searchedProduct.slice(visitedPage, visitedPage + productPerPage)
 
@@ -31,7 +31,7 @@ const Market = () => {
 
     return(
         <Helmet title=" - Produtos">
-            <CommonSection title="Produtos"/>
+            <CommonSection title="Mercados"/>
             
             <section>
                 <Container>
