@@ -15,30 +15,30 @@ import products from "../assets/Data/products";
 
 const Home = () => {
     
-    const [category, setCategory] = useState("Listar Todos")
-    const [allProducts, setAllProducts] = useState(products)
+    // const [category, setCategory] = useState("Listar Todos")
+    // const [allProducts, setAllProducts] = useState(products)
 
-    useEffect (()=> {
-        if(category === "Listar Todos"){
-            setAllProducts(products)
-        }
-        if(category === 'Hortifruit'){
-            const filteredProducts = products.filter(item=> item.category === 'Hortifruit')
-            setAllProducts(filteredProducts)
-        }
-        if(category === 'Carnes'){
-            const filteredProducts = products.filter(item=> item.category === 'Carnes')
-            setAllProducts(filteredProducts)
-        }
-        if(category === 'Padaria'){
-            const filteredProducts = products.filter(item=> item.category === 'Padaria')
-            setAllProducts(filteredProducts)
-        }
-        if(category === 'Congelados'){
-            const filteredProducts = products.filter(item=> item.category === 'Congelados')
-            setAllProducts(filteredProducts)
-        }
-    },[category])
+    // useEffect (()=> {
+    //     if(category === "Listar Todos"){
+    //         setAllProducts(products)
+    //     }
+    //     if(category === 'Hortifruit'){
+    //         const filteredProducts = products.filter(item=> item.category === 'Hortifruit')
+    //         setAllProducts(filteredProducts)
+    //     }
+    //     if(category === 'Carnes'){
+    //         const filteredProducts = products.filter(item=> item.category === 'Carnes')
+    //         setAllProducts(filteredProducts)
+    //     }
+    //     if(category === 'Padaria'){
+    //         const filteredProducts = products.filter(item=> item.category === 'Padaria')
+    //         setAllProducts(filteredProducts)
+    //     }
+    //     if(category === 'Congelados'){
+    //         const filteredProducts = products.filter(item=> item.category === 'Congelados')
+    //         setAllProducts(filteredProducts)
+    //     }
+    // },[category])
 
     
     return (<Helmet title=" - Home">

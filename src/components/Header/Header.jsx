@@ -83,6 +83,7 @@ const Header = () => {
                             <Dropdown.Menu open>
                                 <Dropdown.Item href="/login">Login</Dropdown.Item>
                                 <Dropdown.Item href="/registerProducts">Cadastrar Produtos</Dropdown.Item>
+                                <Dropdown.Item href="/register">Criar ima Conta</Dropdown.Item>
                                 <Dropdown.Item href="/manager">Gerenciar</Dropdown.Item>
                                 <Dropdown.Divider />                    
                                 <Dropdown.Item href="#/action-2">Sair</Dropdown.Item>
@@ -90,9 +91,9 @@ const Header = () => {
                         </Dropdown>
                     </span>
 
-                    <span className="menuHamburguer" onClick={toggleMenu}>
+                    {/* <span className="menuHamburguer" onClick={toggleMenu}>
                         <i class="ri-menu-line"></i>
-                    </span>
+                    </span> */}
                 </div>
             </div>
         </Container>

@@ -58,8 +58,7 @@ const Foods = () => {
                             </div>
                         </Col>
                         <Col lg="6" md="6" sm="6" className="mb-5">
-                            <div className="sortingSearch text-end">
-                                <button onClick={handleOrderClick}>Ordenar</button>
+                            <div className="sortingSearch text-end">                                
                                 <select className="w-50">
                                     <option>Ordenar por</option>
                                     <option value="crescente" onSelect={handleOrderClick}>Alfabética, A-Z</option>

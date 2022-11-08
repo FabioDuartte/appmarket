@@ -12,8 +12,8 @@ import Form from 'react-bootstrap/Form';
 
 
 const Register = () => {
-    return <Helmet title='- Cadastro'>
-        <CommonSection title='Cadastro' />
+    return <Helmet title='- Criar Uma Conta'>
+        <CommonSection title='Criar Uma Conta' />
         <section>
             <Container>
                 <Row>
@@ -21,40 +21,36 @@ const Register = () => {
                         <Form action="#" className=" ">
                             <FormGroup>
                                 <Form.Label for="email" hidden>Email</Form.Label>
-                                <Input type="email" name="email" id="exampleEmail" placeholder="Email" />
+                                <Input type="email" name="email" id="Email" placeholder="Email" />
                             </FormGroup>
 
                             <FormGroup>
                                 <Label for="senha" hidden>Password</Label>
-                                <Input type="password" name="password" id="examplePassword" placeholder="Senha" />
+                                <Input type="password" name="password" id="Password" placeholder="Senha" />
                             </FormGroup>
 
                             <FormGroup>
-                                <Label for="confirmaSenha" hidden>Password</Label>
-                                <Input type="password" name="password" id="examplePassword" placeholder="Confirmar senha" />
+                                <Form.Label for="confirmaSenha" hidden>Password</Form.Label>
+                                <Input type="password" name="password" id="confirmPassword" placeholder="Confirmar senha" />
                             </FormGroup>
-
-                            <div className="mb-3 d-flex align-items center mt-4">
-                                <Form.Check inline label="Sou um cliente" name="group1" type="radio" />
-                                <Form.Check inline label="Sou um fornecedor" name="group1" type="radio" />
-                            </div>
 
                             <Form.Group className="mb-3" controlId="nomeEstabelecimento">
                                 <Form.Label>Nome do estabelecimento</Form.Label>
-                                <Form.Control disabled type="text" placeholder="Digite o nome do estabelecimento" />
+                                <Form.Control  type="text" placeholder="Digite o nome do estabelecimento" />
                             </Form.Group>
 
-                            <Form.Group controlId="formFile" className="mb-3">
-                                <Form.Label>Imagem do estabelecimento</Form.Label>
-                                <Form.Control disabled type="file" />
+                            <Form.Group controlId="cep" className="mb-3">
+                                <Form.Label>CEP</Form.Label>
+                                <Form.Control type="text" placeholder="Digite seu CEP" />
+                            </Form.Group>
+
+                            <Form.Group controlId="cnpj" className="mb-3">
+                                <Form.Label>CNPJ</Form.Label>
+                                <Form.Control type="text" placeholder="Digite seu CNPJ" />
                             </Form.Group>
 
                             <Button className="mt-3 w-100" variant="outline-danger" size="lg"><Link to='/register'>Criar uma conta</Link></Button>
-
-
                         </Form>
-
-
                     </Col>
                 </Row>
             </Container>

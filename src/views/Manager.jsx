@@ -1,7 +1,7 @@
 import React from "react";
 import Helmet from '../components/Helmet/Helmet';
 import CommonSection from '../components/UI/commomSection/CommonSection';
-// import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { Container, Row, Col } from "reactstrap";
 // import { FormGroup, Label, Input } from 'reactstrap';
 import Form from 'react-bootstrap/Form';
@@ -24,16 +24,10 @@ const Manager = () => {
                     <Col lg="6" md="6" classNama=' '> 
                         <Card style={{ width: '18rem' }}>
                             <Card.Img variant="top" src={editMarket} />
-                            <Card.Body>
-                                <Card.Title className="text-center">Gerenciar Mercados</Card.Title>
-                                <Card.Text className="text-center">
-                                    
-                                </Card.Text>
-                                <div className="d-flex align-items-center justify-content-between gap-2">
-                                    <Button variant="success" className="w-50">Cadastrar</Button>
-                                    <Button variant="primary" className="w-50">Editar</Button>
-                                    <Button variant="danger" className="w-50">Deletar</Button>
-                                </div>
+                            <Card.Body>                              
+                                <Card.Text className="text-center"> 
+                                <Link to="/manegerMarket"><Button variant="success" className="text-weight-bold">Gerenciar Mercados</Button></Link>   
+                                </Card.Text>                             
                             </Card.Body>
                         </Card>
                     </Col>
@@ -45,42 +39,15 @@ const Manager = () => {
                     <Col lg="6" md="6" classNama=' '>
                         <Card style={{ width: '18rem' }}>
                             <Card.Img variant="top" src={editProduct} />
-                            <Card.Body>
-                                <Card.Title className="text-center">Gerenciar Produtos</Card.Title>
+                            <Card.Body>                                
                                 <Card.Text className="text-center">
-                                    
+                                  <Button variant="success" className="text-bold">Gerenciar Produtos</Button>                                    
                                 </Card.Text>
-                                <div className="d-flex align-items-center justify-content-between gap-2">
-                                    <Button variant="success" className="w-50">Cadastrar</Button>
-                                    <Button variant="primary" className="w-50">Editar</Button>
-                                    <Button variant="danger" className="w-50">Deletar</Button>
-                                </div>
                             </Card.Body>
                         </Card>
                     </Col>
                 </Row>
-                {/* FIM GERENCIAR PRODUTOS */}
-
-                {/* INICIO GERENCIAR USUÁRIO */}
-                <Row>
-                    <Col lg="6" md="6" classNama=' '>
-                        <Card style={{ width: '18rem' }}>
-                            <Card.Img variant="top" src={userImage} />
-                            <Card.Body>
-                                <Card.Title className="text-center">Gerenciar Usuário</Card.Title>
-                                <Card.Text className="text-center">
-                                   
-                                </Card.Text>
-                                <div className="d-flex align-items-center justify-content-between gap-2">
-                                    <Button variant="success" className="w-50">Cadastrar</Button>
-                                    <Button variant="primary" className="w-50">Editar</Button>
-                                    <Button variant="danger" className="w-50">Deletar</Button>
-                                </div>
-                            </Card.Body>
-                        </Card>
-                    </Col>
-                </Row>
-                {/* FIM GERENCIAR USUÁRIO */}
+                {/* FIM GERENCIAR PRODUTOS */}             
             </Container>
         </section>
     </Helmet>
