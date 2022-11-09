@@ -9,6 +9,7 @@ import Login from '../views/Login'
 import Register from '../views/Register'
 import RegisterProducts from '../views/RegisterProducts'
 import ManegerMarket from '../views/ManagerMarket'
+import ManegerProducts from '../views/ManegerProducts'
 
 
 
@@ -25,6 +26,7 @@ const Routers = () => {
         <Route path='/register' element={<Register/>}/>
         <Route path='/registerProducts' element={<RegisterProducts/>}/>
         <Route path='/manegerMarket' element={<ManegerMarket/>}/>
+        <Route path='/manegerProducts' element={<ManegerProducts/>}/>
     </Routes>
     )
 }

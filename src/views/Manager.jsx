@@ -41,7 +41,7 @@ const Manager = () => {
                             <Card.Img variant="top" src={editProduct} />
                             <Card.Body>                                
                                 <Card.Text className="text-center">
-                                  <Button variant="success" className="text-bold">Gerenciar Produtos</Button>                                    
+                                  <Link to="/manegerProducts"><Button variant="success" className="text-bold">Gerenciar Produtos</Button></Link>                                    
                                 </Card.Text>
                             </Card.Body>
                         </Card>

@@ -40,8 +40,8 @@ const excluirMercado = () => {
 }
 
 const ManegerMarket = () => {
-    return <Helmet title='- Gerenciar Mercados'>
-        <CommonSection title='Gerenciar Mercados' />
+    return <Helmet title='- Gerenciar Mercado'>
+        <CommonSection title='Gerenciar Mercado' />
         <section>
             <Container>
                 <Row>

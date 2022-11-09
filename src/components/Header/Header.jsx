@@ -83,7 +83,7 @@ const Header = () => {
                             <Dropdown.Menu open>
                                 <Dropdown.Item href="/login">Login</Dropdown.Item>
                                 <Dropdown.Item href="/registerProducts">Cadastrar Produtos</Dropdown.Item>
-                                <Dropdown.Item href="/register">Criar ima Conta</Dropdown.Item>
+                                <Dropdown.Item href="/register">Criar uma Conta</Dropdown.Item>
                                 <Dropdown.Item href="/manager">Gerenciar</Dropdown.Item>
                                 <Dropdown.Divider />                    
                                 <Dropdown.Item href="#/action-2">Sair</Dropdown.Item>
