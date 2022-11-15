@@ -7,38 +7,63 @@ import ProductCard from '../components/UI/ProductCard/ProductCard';
 import ReactPaginate from 'react-paginate';
 import '../styles/foods.css';
 import '../styles/pagination.css';
+import Service from '../service/ProductsService';
+import { useEffect } from "react";
+
 
 const Foods = () => {
     const [searchTerm, setSearchTerm] = useState('');
     const [pageNumber, setPagNumber] = useState(0);
-    const [lista, setLista] = useState(products);
+    const [lista, setLista] = useState();
+    const [products, setProducts] = useState([])
 
-    const handleOrderClick = () => {
-
-        let newList = [...lista];
-        newList.sort((a,d) =>(a.title > d.title)?1:(d.title > a.title)?-1:0);
-        setLista(newList);
-        console.log(newList);
+    const handleOrderClick = (e) => {
+        console.log(e)
+        const { value } = e.target;
+        console.log(value)
+        // let newList = [...lista];
+        // newList.sort((a,d) => 
+        //         (a.title > d.title) ?
+        //         1 : (d.title > a.title) ?
+        //         -1 : 0
+        //     );
+        // setLista(newList);
+        // console.log(newList);
 
     }
 
+    // const searchedProduct = products.filter((item)=>{
+    //     if (searchTerm.value === "") return item;
+    //     if (item.title.toLowerCase().includes(searchTerm.toLowerCase()) || item.location.toLowerCase().includes(searchTerm.toLowerCase())) return item;
+    // })
 
-    const searchedProduct = products.filter((item)=>{
-        if (searchTerm.value === "") return item;
-        if (item.title.toLowerCase().includes(searchTerm.toLowerCase()) || item.location.toLowerCase().includes(searchTerm.toLowerCase())) return item;
-    })
+    // const productPerPage = 8
+    // const visitedPage = pageNumber * productPerPage
+    // const displayPage = searchedProduct.slice(visitedPage, visitedPage + productPerPage)
 
-
-    const productPerPage = 8
-    const visitedPage = pageNumber * productPerPage
-    const displayPage = searchedProduct.slice(visitedPage, visitedPage + productPerPage)
-
-    const pageCount = Math.ceil(searchedProduct.length / productPerPage)
+    // const pageCount = Math.ceil(searchedProduct.length / productPerPage)
 
     const changePage = ({selected}) =>{
         setPagNumber(selected)
     }
 
+    const fetchProducts = async () => {
+        const pagination = {
+            size: 5,
+            orderby: "preco",
+            direction: "ASC",
+            page: 0 ,
+            search: ""
+        }
+
+        const products = Service.getProducts(pagination);
+        const data = await products;
+        setProducts(data.data.data)
+    }
+
+    useEffect(() => {
+        fetchProducts();
+    }, [])
 
     return(
         <Helmet title=" - Produtos">
@@ -61,22 +86,19 @@ const Foods = () => {
                             <div className="sortingSearch text-end">                                
                                 <select className="w-50">
                                     <option>Ordenar por</option>
-                                    <option value="crescente" onSelect={handleOrderClick}>Alfabética, A-Z</option>
-                                    <option value="decrescente">Alfabética, Z-A</option>
+                                    <option value="0" onSelect={handleOrderClick}>Alfabética, A-Z</option>
+                                    <option value="1">Preço</option>
                                     {/* <option value=""></option>
                                     <option value=""></option> */}
                                 </select>
                             </div>
                         </Col>
-
-                        {displayPage
-                        
-                        .map((lista) => ( 
-                           <Col lg="3" md="4" sm="6" xs="6" key={lista.id} className="mb-4">
-                        <ProductCard item={lista}/></Col>
+                        {products.map((product) => ( 
+                           <Col lg="3" md="4" sm="6" xs="6" key={product.id} className="mb-4">
+                            <ProductCard item={product}/></Col>
                         ))}
                         
-                        <div>
+                        {/* <div>
                             <ReactPaginate
                                 pageCount={pageCount}
                                 onPageChange={changePage}
@@ -84,7 +106,7 @@ const Foods = () => {
                                 nextLabel= "Next"
                                 containerClassName="paginationBttns"
                             />
-                        </div>
+                        </div> */}
                     </Row>
                 </Container>
             </section>

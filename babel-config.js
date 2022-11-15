@@ -1,0 +1,11 @@
+module.exports = function(api) {
+    api.cache(true);
+    return {
+        test: /\.jsx?$/,
+        loader: 'babel-loader',
+        exclude: /node_modules/,
+        query: {
+            presets: ['es2015']
+        }
+    };
+  };
