@@ -7,22 +7,49 @@ import MarketCard from "../components/UI/marketCard/marketCard";
 import ReactPaginate from 'react-paginate';
 import '../styles/marketCard.css';
 import '../styles/pagination.css';
+import Service from '../service/MarketService';
+import { useEffect } from "react";
+
+
 
 const Market = () => {
     const [searchTerm, setSearchTerm] = useState('');
     const [pageNumber, setPagNumber] = useState(0);
+    const [markets, setMarkets] = useState([])
 
     const searchedProduct = markets.filter((item)=>{
         if (searchTerm.value === "") return item;
         if (item.name.toLowerCase().includes(searchTerm.toLowerCase()) || item.adress.toLowerCase().includes(searchTerm.toLowerCase())) return item;
     })
 
+    const fetchMarkets = async () => {
+        try {
+            const pagination = {
+                size: 5,
+                orderby: "nome",
+                direction: "ASC",
+                page: 0 ,
+                search: ""
+            }
+            const markets = Service.getMarkets(pagination);
+            const data = await markets;
+            setMarkets(data.data.data)
+        } catch (error) {   
+            console.log(error)    
+        }
+    }
 
-    const productPerPage = 8
-    const visitedPage = pageNumber * productPerPage
-    const displayPage = searchedProduct.slice(visitedPage, visitedPage + productPerPage)
+    useEffect(() => {
+        fetchMarkets();
+    }, [])
 
-    const pageCount = Math.ceil(searchedProduct.length / productPerPage)
+
+
+    // const productPerPage = 8
+    // const visitedPage = pageNumber * productPerPage
+    // const displayPage = searchedProduct.slice(visitedPage, visitedPage + productPerPage)
+
+    // const pageCount = Math.ceil(searchedProduct.length / productPerPage)
 
     const changePage = ({selected}) =>{
         setPagNumber(selected)
@@ -31,8 +58,7 @@ const Market = () => {
 
     return(
         <Helmet title=" - Produtos">
-            <CommonSection title="Mercados"/>
-            
+            <CommonSection title="Mercados"/>            
             <section>
                 <Container>
                     <Row>
@@ -50,22 +76,19 @@ const Market = () => {
                             <div className="sortingSearch text-end">
                                 <select className="w-50">
                                     <option>Ordenar por</option>
-                                    <option value="crescente">Alfabética, A-Z</option>
-                                    <option value="decrescente">Alfabética, Z-A</option>
+                                    <option value="crescente">Alfabética, A-Z</option>                                    
                                     {/* <option value=""></option>
                                     <option value=""></option> */}
                                 </select>
                             </div>
                         </Col>
 
-                        {displayPage
-                        
-                        .map((item) => ( 
-                           <Col lg="3" md="4" sm="6" xs="6" key={item.id} className="mb-4">
-                        <MarketCard item={item}/></Col>
+                        {markets.map((market) => ( 
+                           <Col lg="3" md="4" sm="6" xs="6" key={market.id} className="mb-4">
+                        <MarketCard market={market}/></Col>
                         ))}
                         
-                        <div>
+                        {/* <div>
                             <ReactPaginate
                                 pageCount={pageCount}
                                 onPageChange={changePage}
@@ -73,7 +96,7 @@ const Market = () => {
                                 nextLabel= "Next"
                                 containerClassName="paginationBttns"
                             />
-                        </div>
+                        </div> */}
                     </Row>
                 </Container>
             </section>

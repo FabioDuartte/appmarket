@@ -46,25 +46,28 @@ const Foods = () => {
     const changePage = ({selected}) =>{
         setPagNumber(selected)
     }
-
-    const fetchProducts = async () => {
-        const pagination = {
-            size: 5,
-            orderby: "preco",
-            direction: "ASC",
-            page: 0 ,
-            search: ""
+   const fetchProducts = async () => {
+        try {
+            const pagination = {
+                size: 5,
+                orderby: "preco",
+                direction: "ASC",
+                page: 0 ,
+                search: ""
+            }
+            const products = Service.getProducts(pagination);
+            const data = await products;
+            setProducts(data.data.data)
+        } catch (error) {   
+            console.log(error)    
         }
-
-        const products = Service.getProducts(pagination);
-        const data = await products;
-        setProducts(data.data.data)
     }
 
     useEffect(() => {
         fetchProducts();
     }, [])
 
+ 
     return(
         <Helmet title=" - Produtos">
             <CommonSection title="Produtos"/>
