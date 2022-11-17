@@ -15,21 +15,24 @@ import { useEffect } from "react";
 const Market = () => {
     const [searchTerm, setSearchTerm] = useState('');
     const [pageNumber, setPagNumber] = useState(0);
-    const [markets, setMarkets] = useState([])
+    const [markets, setMarkets] = useState([])  
+    const [busca, setBusca] = useState("");
 
-    const searchedProduct = markets.filter((item)=>{
-        if (searchTerm.value === "") return item;
-        if (item.name.toLowerCase().includes(searchTerm.toLowerCase()) || item.adress.toLowerCase().includes(searchTerm.toLowerCase())) return item;
-    })
+    
 
-    const fetchMarkets = async () => {
+    // const searchedProduct = markets.filter((item)=>{
+    //     if (searchTerm.value === "") return item;
+    //     if (item.name.toLowerCase().includes(searchTerm.toLowerCase()) || item.adress.toLowerCase().includes(searchTerm.toLowerCase())) return item;
+    // })
+
+    const fetchMarkets = async (busca) => {
         try {
             const pagination = {
-                size: 5,
+                size: 10,
                 orderby: "nome",
                 direction: "ASC",
                 page: 0 ,
-                search: ""
+                search: busca
             }
             const markets = Service.getMarkets(pagination);
             const data = await markets;
@@ -67,9 +70,10 @@ const Market = () => {
                                 <input
                                  type="text"
                                  placeholder="Estou procurando por..."
-                                 value={searchTerm}
-                                 onChange={(e)=> setSearchTerm(e.target.value)}/>
-                                <span><i class="ri-search-line"></i></span>
+                                 value={busca}
+                                 onChange={(e)=> setBusca(e.target.value)}/>           
+                                 <span onClick={() => fetchMarkets(busca)}><i class="ri-search-line" ></i></span>
+                                
                             </div>
                         </Col>
                         <Col lg="6" md="6" sm="6" className="mb-5">
@@ -85,7 +89,7 @@ const Market = () => {
 
                         {markets.map((market) => ( 
                            <Col lg="3" md="4" sm="6" xs="6" key={market.id} className="mb-4">
-                        <MarketCard market={market}/></Col>
+                        <MarketCard item={market}/></Col>
                         ))}
                         
                         {/* <div>

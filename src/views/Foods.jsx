@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useState, useCallback} from "react";
 import Helmet from '../components/Helmet/Helmet';
 import CommonSection from "../components/UI/commomSection/CommonSection";
 import { Container, Row, Col } from "reactstrap";
@@ -11,11 +11,18 @@ import Service from '../service/ProductsService';
 import { useEffect } from "react";
 
 
+//id, nome, image, preco, market
+
 const Foods = () => {
     const [searchTerm, setSearchTerm] = useState('');
-    const [pageNumber, setPagNumber] = useState(0);
+    // const [pageNumber, setPagNumber] = useState(0);
     const [lista, setLista] = useState();
     const [products, setProducts] = useState([])
+    const [busca, setBusca] = useState("");
+    
+    
+   
+
 
     const handleOrderClick = (e) => {
         console.log(e)
@@ -32,10 +39,11 @@ const Foods = () => {
 
     }
 
-    // const searchedProduct = products.filter((item)=>{
-    //     if (searchTerm.value === "") return item;
-    //     if (item.title.toLowerCase().includes(searchTerm.toLowerCase()) || item.location.toLowerCase().includes(searchTerm.toLowerCase())) return item;
-    // })
+    const searchedProduct = products.filter((item)=>{
+        
+        // if (searchTerm.value === "") return item;
+        // if (item.nome.toLowerCase().includes(searchTerm.toLowerCase())); //|| item.location.toLowerCase().includes(searchTerm.toLowerCase())) return item;
+     })
 
     // const productPerPage = 8
     // const visitedPage = pageNumber * productPerPage
@@ -43,31 +51,29 @@ const Foods = () => {
 
     // const pageCount = Math.ceil(searchedProduct.length / productPerPage)
 
-    const changePage = ({selected}) =>{
-        setPagNumber(selected)
-    }
-   const fetchProducts = async () => {
-        try {
-            const pagination = {
-                size: 5,
-                orderby: "preco",
-                direction: "ASC",
-                page: 0 ,
-                search: ""
-            }
-            const products = Service.getProducts(pagination);
-            const data = await products;
-            setProducts(data.data.data)
-        } catch (error) {   
-            console.log(error)    
-        }
+    // const changePage = ({selected}) =>{
+    //     setPagNumber(selected)
+    // }
+
+    const fetchProducts = async (busca) => {
+        const pagination = {
+            size: 10,
+            orderby: "preco",
+            direction: "ASC",
+            page: 0 ,
+            search: busca
+         }
+
+        const products = Service.getProducts(pagination);
+        const data = await products;
+        setProducts(data.data.data)
+        console.log(data.data.data)
     }
 
     useEffect(() => {
         fetchProducts();
     }, [])
 
- 
     return(
         <Helmet title=" - Produtos">
             <CommonSection title="Produtos"/>
@@ -79,10 +85,11 @@ const Foods = () => {
                             <div className="searchBar d-flex align-items-center justify-content-between w-50">
                                 <input
                                  type="text"
-                                 placeholder="Estou procurando por..."
-                                 value={searchTerm}
-                                 onChange={(e)=> setSearchTerm(e.target.value)}/>
-                                <span><i class="ri-search-line"></i></span>
+                                 placeholder="Estou procurando por... "
+                                 value={busca}                                 
+                                 onChange={(e)=> setBusca(e.target.value)}/>
+                                <span onClick={() => fetchProducts(busca)}><i class="ri-search-line" ></i></span>
+                                {/* <button >Busca</button> */}
                             </div>
                         </Col>
                         <Col lg="6" md="6" sm="6" className="mb-5">
