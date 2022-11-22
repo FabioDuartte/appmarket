@@ -1,7 +1,7 @@
 import React, {useState, useCallback} from "react";
 import Helmet from '../components/Helmet/Helmet';
 import CommonSection from "../components/UI/commomSection/CommonSection";
-import { Container, Row, Col } from "reactstrap";
+import { Container, Row, Col, Button } from "reactstrap";
 import products from '../assets/Data/products';
 import ProductCard from '../components/UI/ProductCard/ProductCard';
 import ReactPaginate from 'react-paginate';
@@ -18,61 +18,34 @@ const Foods = () => {
     // const [pageNumber, setPagNumber] = useState(0);
     const [lista, setLista] = useState();
     const [products, setProducts] = useState([])
-    const [busca, setBusca] = useState("");
-    
-    
-   
+    const [busca, setBusca] = useState("");  
+    const [pageNumber, setPageNumber] = useState(0);  
+    const [isPrice, setIsPrice] = useState(false);
+    const [itensNoTotal, setItensNoTotal] = useState(0);
+    const [size, setSize] = useState(16);
 
+          
 
-    const handleOrderClick = (e) => {
-        console.log(e)
-        const { value } = e.target;
-        console.log(value)
-        // let newList = [...lista];
-        // newList.sort((a,d) => 
-        //         (a.title > d.title) ?
-        //         1 : (d.title > a.title) ?
-        //         -1 : 0
-        //     );
-        // setLista(newList);
-        // console.log(newList);
-
-    }
-
-    const searchedProduct = products.filter((item)=>{
-        
-        // if (searchTerm.value === "") return item;
-        // if (item.nome.toLowerCase().includes(searchTerm.toLowerCase())); //|| item.location.toLowerCase().includes(searchTerm.toLowerCase())) return item;
-     })
-
-    // const productPerPage = 8
-    // const visitedPage = pageNumber * productPerPage
-    // const displayPage = searchedProduct.slice(visitedPage, visitedPage + productPerPage)
-
-    // const pageCount = Math.ceil(searchedProduct.length / productPerPage)
-
-    // const changePage = ({selected}) =>{
-    //     setPagNumber(selected)
-    // }
-
-    const fetchProducts = async (busca) => {
+    const fetchProducts = async () => {
         const pagination = {
-            size: 10,
-            orderby: "preco",
+            size: size,
+            orderby: (isPrice) ? "preco" : "nome",
             direction: "ASC",
-            page: 0 ,
-            search: busca
-         }
+            page: pageNumber,
+            search: busca,
+        }
 
         const products = Service.getProducts(pagination);
         const data = await products;
         setProducts(data.data.data)
+        setItensNoTotal(data.data.itensNoTotal)
         console.log(data.data.data)
+        console.log(data.data.itensNoTotal)
     }
 
     useEffect(() => {
         fetchProducts();
-    }, [])
+    }, [isPrice, pageNumber, itensNoTotal])
 
     return(
         <Helmet title=" - Produtos">
@@ -93,14 +66,11 @@ const Foods = () => {
                             </div>
                         </Col>
                         <Col lg="6" md="6" sm="6" className="mb-5">
-                            <div className="sortingSearch text-end">                                
-                                <select className="w-50">
-                                    <option>Ordenar por</option>
-                                    <option value="0" onSelect={handleOrderClick}>Alfabética, A-Z</option>
-                                    <option value="1">Preço</option>
-                                    {/* <option value=""></option>
-                                    <option value=""></option> */}
-                                </select>
+                            <div className="sortingSearch text-end">
+                                {(!isPrice) ? 
+                                    <Button onClick={() => {setIsPrice(!isPrice); }}>Pesquisar por menor preço</Button> :
+                                    <Button onClick={() => {setIsPrice(!isPrice); }}>Pesquisaer por ordem alfabética</Button>
+                                }                                                                
                             </div>
                         </Col>
                         {products.map((product) => ( 
@@ -108,15 +78,21 @@ const Foods = () => {
                             <ProductCard item={product}/></Col>
                         ))}
                         
-                        {/* <div>
-                            <ReactPaginate
-                                pageCount={pageCount}
-                                onPageChange={changePage}
-                                previousLabel= "Prev"
-                                nextLabel= "Next"
-                                containerClassName="paginationBttns"
-                            />
-                        </div> */}
+                        <div>
+                            <div >
+                                {
+                                (size >= itensNoTotal) ?
+                                    null :                               
+                                (pageNumber === 0) ?                                      
+                                    <Button onClick={() => {setPageNumber(pageNumber+1) }}>Next</Button> : 
+                                (pageNumber*size < itensNoTotal) ? 
+                                    <div>
+                                        <Button onClick={() => {setPageNumber(pageNumber-1); }}>Prev</Button>
+                                        <Button onClick={() => {setPageNumber(pageNumber+1); }}>Next</Button>                                                                            
+                                    </div> : <Button onClick={() => {setPageNumber(pageNumber-1); }}>Prev</Button>
+                                }                                                                
+                            </div>                       
+                        </div>
                     </Row>
                 </Container>
             </section>

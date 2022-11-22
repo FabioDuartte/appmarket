@@ -80,7 +80,8 @@ const Market = () => {
                             <div className="sortingSearch text-end">
                                 <select className="w-50">
                                     <option>Ordenar por</option>
-                                    <option value="crescente">Alfabética, A-Z</option>                                    
+                                    {/* <option value="crescente">Por localidade</option> 
+                                    <option value="crescente">Por nome</option>                                     */}
                                     {/* <option value=""></option>
                                     <option value=""></option> */}
                                 </select>
