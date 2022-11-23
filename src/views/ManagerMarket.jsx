@@ -80,7 +80,6 @@ const ManegerMarket = () => {
                                 <Button className="mt-3 w-50 " variant="primary" size="lg" onClick={() => salvarAlteracoes()}>Salvar Alterações</Button>
                                 <Button className="mt-3 w-50 " variant="danger" size="lg" onClick={() => excluirMercado()}>Excluir Mercado</Button>
                             </div>
-
                         </Form>
                     </Col>
                 </Row>

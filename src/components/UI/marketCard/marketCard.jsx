@@ -1,5 +1,6 @@
 import React from "react";
 import marketCard from '../../../styles/marketCard.css'
+import marketImage from "../../../assets/PokeCenter.png"
 import { Link } from 'react-router-dom';
 
 
@@ -9,7 +10,7 @@ const MarketCard = (props) => {
     return(
         <div className="productItem">
             <div className="productImg">
-                <Link to={`/food/${id}`}><img src={image} alt="Imagem" className="w-50" /></Link>
+                <Link to={`/food/${id}`}><img src={marketImage} alt="Imagem" className="w-50" /></Link>
             </div>
             <div className="productContent ">
                 <h5><Link to={`/food/${id}`}>{nome}</Link></h5>
