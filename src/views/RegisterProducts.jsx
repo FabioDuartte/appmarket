@@ -7,13 +7,19 @@ import { Container, Row, Col } from "reactstrap";
 import Form from 'react-bootstrap/Form';
 import '../styles/login.css';
 import Button from 'react-bootstrap/Button';
-
+import Excel from '../service/WorkSheet';
+import * as XLSX from 'xlsx'
 
 
 
 const RegisterProducts = () => {
 
-   
+    const handleChange = async (e) => {
+        const file = e.target.files[0]    
+        const porduct = await Excel(file)
+        
+        console.log(porduct)
+    }
 
     return <Helmet title='- Cadastrar Produtos'>
         <CommonSection title='Cadastrar Produtos' />
@@ -45,7 +51,7 @@ const RegisterProducts = () => {
                             </Form.Select> */}
                             <Form.Group controlId="formFile" className="mb-3" >
                                 <Form.Label>Importar arquivo do Excel</Form.Label>
-                                <Form.Control type="file" id="file" accept=".xlsx, .xls" />
+                                <Form.Control type="file" id="file" accept=".xlsx, .xls" onChange={handleChange}/>
                                 <small>Extensões suportadas: .xlsx e .xls</small>
                             </Form.Group>
 
