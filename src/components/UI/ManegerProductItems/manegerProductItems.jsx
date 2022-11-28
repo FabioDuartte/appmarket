@@ -5,6 +5,7 @@ import { Button } from "reactstrap";
 import closeCircleFill  from '../../../assets/closeCircleFill.png';
 import edi2line  from '../../../assets/edi2line.png';
 import Swal from 'sweetalert2'
+import productImage from '../../../assets/productImagem.png'
 
 
 const excluirMercado = () => {
@@ -26,11 +27,11 @@ const excluirMercado = () => {
         }
       })
 }
-
+//a
 
 
 const ManegerProcuctItems = (props) => {
-    const {id, title, image, price, location} = props.item;
+    const {id, nome, image, preco  , market} = props.item;
 
     return(
         
@@ -41,16 +42,16 @@ const ManegerProcuctItems = (props) => {
 
             </div>
             <div className="productImg">
-                <Link to={`/food/${id}`}><img src={image} alt="Imagem" className="w-50" /></Link>
+                <Link to={`/food/${id}`}><img src={productImage} alt="Imagem" className="w-50" /></Link>
             </div>
             <div className="productContent ">
-                <h5><Link to={`/food/${id}`}>{title}</Link></h5>
+                <h5><Link to={`/food/${id}`}>{nome}</Link></h5>
                 
             </div>
             <div className="d-flex d-flex align-items-center justify-content-between">
-                <span className="productPrice">R${price}</span>
+                <span className="productPrice">R${preco}</span>
                 
-                <span className="productLocation">{location}</span>
+                <span className="productLocation">{market?.nome}</span>
             </div>
         </div>
       

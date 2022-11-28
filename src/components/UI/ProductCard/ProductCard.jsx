@@ -3,7 +3,7 @@ import productCard from '../../../styles/productCard.css';
 import productImage from '../../../assets/productImagem.png'
 import { Link } from 'react-router-dom';
 
-
+//a
 const ProductCard = (props) => {
     const {id, nome, image, preco, market} = props.item;
 

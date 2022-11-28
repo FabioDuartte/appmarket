@@ -2,48 +2,55 @@ import React, {useState} from "react";
 import Helmet from '../components/Helmet/Helmet';
 import CommonSection from "../components/UI/commomSection/CommonSection";
 import { Container, Row, Col, Button } from "reactstrap";
-import products from '../assets/Data/products';
 import ManegerProcuctItems from '../components/UI/ManegerProductItems/manegerProductItems';
-import ReactPaginate from 'react-paginate';
 import '../styles/foods.css';
 import '../styles/pagination.css';
+import '../styles/paginationFM.css';
+import { useEffect } from "react";
+import Service from '../service/ProductsService';
+import {useLocation} from "react-router-dom"
 
 const ManegerProducts = () => {
-    const [searchTerm, setSearchTerm] = useState('');
-    const [pageNumber, setPagNumber] = useState(0);
-    const [lista, setLista] = useState(products);
+    const [searchTerm, setSearchTerm] = useState('');   
+    const [pageNumber, setPageNumber] = useState(0); 
+    const [isPrice, setIsPrice] = useState(false);
+    const [itensNoTotal, setItensNoTotal] = useState(0);
+    const [size, setSize] = useState(16);
+    const [busca, setBusca] = useState("");
+    const [products, setProducts] = useState([])
+    
 
-    const handleOrderClick = () => {
+    const fetchManegerProducts = async () => {
+        try {
+            const pagination = {
+                size: size,
+                orderby: (isPrice) ? "preco" : "nome",
+                direction: "ASC",
+                page: pageNumber ,
+                search: busca,
+            }
 
-        let newList = [...lista];
-        newList.sort((a,d) =>(a.title > d.title)?1:(d.title > a.title)?-1:0);
-        setLista(newList);
-        console.log(newList);
+            const markets = Service.getProducts(pagination);
+            const data = await markets;
+            setProducts(data.data.data)            
+            setItensNoTotal(data.data.itensNoTotal)
+            console.log(data.data.data)
+            console.log(data.data.itensNoTotal)
 
+        } catch (error) {   
+            console.log(error)    
+        }
     }
-
-
-    const searchedProduct = products.filter((item)=>{
-        if (searchTerm.value === "") return item;
-        if (item.title.toLowerCase().includes(searchTerm.toLowerCase()) || item.location.toLowerCase().includes(searchTerm.toLowerCase())) return item;
-    })
-
-
-    const productPerPage = 8
-    const visitedPage = pageNumber * productPerPage
-    const displayPage = searchedProduct.slice(visitedPage, visitedPage + productPerPage)
-
-    const pageCount = Math.ceil(searchedProduct.length / productPerPage)
-
-    const changePage = ({selected}) =>{
-        setPagNumber(selected)
-    }
+    
+    useEffect(() => {        
+        fetchManegerProducts();
+    }, [isPrice, pageNumber, itensNoTotal])
 
 
     return(
         <Helmet title=" - Gerenciar Produtos">
-            <CommonSection title="Gerenciar Produtos"/>
-            
+            <CommonSection title="Gerenciar Produtos"/>          
+
             <section>
                 <Container>
                     <Row>
@@ -51,31 +58,41 @@ const ManegerProducts = () => {
                             <div className="searchBar d-flex align-items-center justify-content-between w-0">
                                 <input
                                  type="text"
-                                 placeholder="Estou procurando por..."
-                                 value={searchTerm}
-                                 onChange={(e)=> setSearchTerm(e.target.value)}/>
-                                <span><i class="ri-search-line"></i></span>
+                                 placeholder="Estou procurando por... "
+                                 value={busca}                                 
+                                 onChange={(e)=> setBusca(e.target.value)}/>
+                                <span onClick={() => fetchManegerProducts(busca)}><i class="ri-search-line" ></i></span>
                             </div>
                         </Col>
                         <Col lg="6" md="6" sm="6" className="mb-5 w">
                             <Button className="border:red">Cadastrar Produto</Button>
                         </Col>
+                        
+                        {(products) ?
+                            products.map((product) => ( 
+                                <Col lg="3" md="4" sm="6" xs="6" key={product.id} className="mb-4">
+                                <ManegerProcuctItems item={product}/></Col>
+                            )) :
+                            <div>Não há produto cadastrado </div>
+                        }
 
-                        {displayPage
-                        
-                        .map((lista) => ( 
-                           <Col lg="3" md="4" sm="6" xs="6" key={lista.id} className="mb-4">
-                        <ManegerProcuctItems item={lista}/></Col>
-                        ))}
-                        
+                       
+
                         <div>
-                            <ReactPaginate
-                                pageCount={pageCount}
-                                onPageChange={changePage}
-                                previousLabel= "Prev"
-                                nextLabel= "Next"
-                                containerClassName="paginationBttns"
-                            />
+                            <div className="pagination">                            {
+                            (size >= itensNoTotal) ?
+                                null :                               
+                            (pageNumber === 0) ? 
+                                                                 
+                                <Button onClick={() => {setPageNumber(pageNumber+1) }}>Próximo</Button> : 
+                            (pageNumber*size < itensNoTotal) ? 
+                                
+                                <div className="pagination">
+                                    <Button onClick={() => {setPageNumber(pageNumber-1); }}>Anterior</Button>
+                                    <Button onClick={() => {setPageNumber(pageNumber+1); }}>Próximo</Button>                                                                            
+                                </div> : <Button onClick={() => {setPageNumber(pageNumber-1); }}>Anterior</Button>
+                            }
+                            </div>                                                                
                         </div>
                     </Row>
                 </Container>

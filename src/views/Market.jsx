@@ -9,7 +9,7 @@ import '../styles/marketCard.css';
 import '../styles/pagination.css';
 import Service from '../service/MarketService';
 import { useEffect } from "react";
-import '../styles/paginationFM.css'
+import '../styles/paginationFM.css';
 
 
 
