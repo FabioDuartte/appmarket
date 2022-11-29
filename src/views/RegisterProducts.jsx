@@ -13,6 +13,10 @@ import Button from 'react-bootstrap/Button';
 
 const RegisterProducts = () => {
 
+    const handleChange = (e) => {
+        const {value} = e.target
+        console.log(value)
+    }
    
 
     return <Helmet title='- Cadastrar Produtos'>
@@ -45,7 +49,7 @@ const RegisterProducts = () => {
                             </Form.Select> */}
                             <Form.Group controlId="formFile" className="mb-3" >
                                 <Form.Label>Importar arquivo do Excel</Form.Label>
-                                <Form.Control type="file" id="file" accept=".xlsx, .xls" />
+                                <Form.Control onChange={handleChange} type="file" id="file" accept=".xlsx, .xls" />
                                 <small>Extensões suportadas: .xlsx e .xls</small>
                             </Form.Group>
 

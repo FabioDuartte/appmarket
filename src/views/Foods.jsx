@@ -68,8 +68,8 @@ const Foods = () => {
                         <Col lg="6" md="6" sm="6" className="mb-5">
                             <div className="sortingSearch text-end">
                                 {(!isPrice) ? 
-                                    <Button onClick={() => {setIsPrice(!isPrice); }}>Pesquisar por menor preço</Button> :
-                                    <Button onClick={() => {setIsPrice(!isPrice); }}>Pesquisaer por ordem alfabética</Button>
+                                    <Button color="success" onClick={() => {setIsPrice(!isPrice); }}>Pesquisar por menor preço</Button> :
+                                    <Button color="primary"onClick={() => {setIsPrice(!isPrice); }}>Colocar em ordem alfabética</Button>
                                 }                                                                
                             </div>
                         </Col>
