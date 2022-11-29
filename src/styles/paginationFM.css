@@ -1,5 +1,5 @@
-.paginationBttns {
-    width: 80%;
+.pagination{
+    width: 50%;
     height: 40px;
     margin: auto;
     display: flex;
@@ -11,7 +11,7 @@
     font-weight: bold;
 }
 
-.paginationBttns a button {
+.pagination button {
     padding: 5px 13px;
     background: #df2020 !important; 
     color: #fff !important;
@@ -22,6 +22,3 @@
     margin: 5px;
 }
 
-.paginationBttns a:hover {
-    background: #b0c055;
-}

@@ -7,17 +7,19 @@ import { Container, Row, Col } from "reactstrap";
 import Form from 'react-bootstrap/Form';
 import '../styles/login.css';
 import Button from 'react-bootstrap/Button';
-
-
+import Excel from '../service/WorkSheet';
+import {useNavigate} from "react-router-dom"; 
 
 
 const RegisterProducts = () => {
-
-    const handleChange = (e) => {
-        const {value} = e.target
-        console.log(value)
+    const navigate = useNavigate();
+    const handleChange = async (e) => {
+        const file = e.target.files[0]    
+        const product = await Excel(file)
+        
+        console.log(product)
+        navigate("/manegerProducts", {state: product})
     }
-   
 
     return <Helmet title='- Cadastrar Produtos'>
         <CommonSection title='Cadastrar Produtos' />
@@ -25,35 +27,14 @@ const RegisterProducts = () => {
             <Container>
                 <Row>
                     <Col lg='6' md='12' sm='12' className="m-auto">
-                        <form>
-                            {/* <Form.Group className="mb-3" controlId="nomeEstabelecimento">
-                                <Form.Label>Nome do estabelecimento</Form.Label>
-                                <Form.Control type="text" placeholder="Digite o nome do estabelecimento" />
-                            </Form.Group>
-
-                            <Form.Group className="mb-3" controlId="nomeProduto">
-                                <Form.Label>Nome do produto</Form.Label>
-                                <Form.Control type="password" placeholder="Digite o nome do produto" />
-                            </Form.Group>
-
-                            <Form.Group className="mb-3" controlId="precoProduto">
-                                <Form.Label>Preço por unidade</Form.Label>
-                                <Form.Control type="text" placeholder="Digite o preço por unidade do produto" />
-                            </Form.Group> */}
-                            {/* 
-                            <Form.Select className="mb-3" aria-label="Categoria">
-                                <option>Selecione uma categoria</option>
-                                <option value="1">Hortifruit</option>
-                                <option value="2">Carne</option>
-                                <option value="3">Congelados</option>
-                            </Form.Select> */}
+                        <form>                            
                             <Form.Group controlId="formFile" className="mb-3" >
                                 <Form.Label>Importar arquivo do Excel</Form.Label>
-                                <Form.Control onChange={handleChange} type="file" id="file" accept=".xlsx, .xls" />
+                                <Form.Control type="file" id="file" accept=".xlsx, .xls" onChange={handleChange}/>
                                 <small>Extensões suportadas: .xlsx e .xls</small>
                             </Form.Group>
 
-                            <Button className="w-100" variant="primary" type="submit" size="lg">
+                            <Button className="w-100" variant="primary" type="submit" size="lg" >
                                 Cadastrar
                             </Button>
                         </form>

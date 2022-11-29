@@ -10,6 +10,9 @@ import '../styles/pagination.css';
 import Service from '../service/ProductsService';
 import { useEffect } from "react";
 
+import '../styles/paginationFM.css'
+
+
 
 //id, nome, image, preco, market
 
@@ -41,6 +44,7 @@ const Foods = () => {
         setItensNoTotal(data.data.itensNoTotal)
         console.log(data.data.data)
         console.log(data.data.itensNoTotal)
+        
     }
 
     useEffect(() => {
@@ -69,29 +73,29 @@ const Foods = () => {
                             <div className="sortingSearch text-end">
                                 {(!isPrice) ? 
                                     <Button color="success" onClick={() => {setIsPrice(!isPrice); }}>Pesquisar por menor preço</Button> :
-                                    <Button color="primary"onClick={() => {setIsPrice(!isPrice); }}>Colocar em ordem alfabética</Button>
+                                    <Button color="warning" onClick={() => {setIsPrice(!isPrice); }}>Pesquisaer por ordem alfabética</Button>
                                 }                                                                
                             </div>
                         </Col>
                         {products.map((product) => ( 
                            <Col lg="3" md="4" sm="6" xs="6" key={product.id} className="mb-4">
                             <ProductCard item={product}/></Col>
-                        ))}
-                        
+                        ))}    
                         <div>
-                            <div >
-                                {
-                                (size >= itensNoTotal) ?
-                                    null :                               
-                                (pageNumber === 0) ?                                      
-                                    <Button onClick={() => {setPageNumber(pageNumber+1) }}>Next</Button> : 
-                                (pageNumber*size < itensNoTotal) ? 
-                                    <div>
-                                        <Button onClick={() => {setPageNumber(pageNumber-1); }}>Prev</Button>
-                                        <Button onClick={() => {setPageNumber(pageNumber+1); }}>Next</Button>                                                                            
-                                    </div> : <Button onClick={() => {setPageNumber(pageNumber-1); }}>Prev</Button>
-                                }                                                                
-                            </div>                       
+                            <div className="pagination">                            {
+                            (size >= itensNoTotal) ?
+                                null :                               
+                            (pageNumber === 0) ? 
+                                                                 
+                                <Button onClick={() => {setPageNumber(pageNumber+1) }}>Próximo</Button> : 
+                            (pageNumber*size < itensNoTotal) ? 
+                                
+                                <div className="pagination">
+                                    <Button onClick={() => {setPageNumber(pageNumber-1); }}>Anterior</Button>
+                                    <Button onClick={() => {setPageNumber(pageNumber+1); }}>Próximo</Button>                                                                            
+                                </div> : <Button onClick={() => {setPageNumber(pageNumber-1); }}>Anterior</Button>
+                            }
+                            </div>                                                                
                         </div>
                     </Row>
                 </Container>
