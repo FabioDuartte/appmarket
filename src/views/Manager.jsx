@@ -12,10 +12,14 @@ import editMarket from '../assets/editMarket.png'
 import editProduct from '../assets/editProduct.png'
 import userImage from '../assets/userImage.png'
 import '../styles/managerData.css';
+import { useUserContext } from "../Context/UserContext";
+import NotFound from "./NotFound";
 
 
 const Manager = () => {
-    return <Helmet title='-Editar Cadastrar Fornecedor'>
+    const userContext = useUserContext();
+    return (userContext.isLogged) ? 
+    <Helmet title='-Editar Cadastrar Fornecedor'>
         <CommonSection title='Gerenciar' />
         <section>
             <Container className="d-flex align-items-center justify-content-center gap-3">
@@ -50,7 +54,8 @@ const Manager = () => {
                 {/* FIM GERENCIAR PRODUTOS */}             
             </Container>
         </section>
-    </Helmet>
+    </Helmet> : <NotFound></NotFound>
+
 };
 
 export default Manager;

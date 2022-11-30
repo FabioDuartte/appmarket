@@ -46,14 +46,13 @@ const Login = () => {
             if (user) {
                 userContext.setUser(user);          
                 userContext.setIsLogged(true);          
-                navigate("/manager");
-                console.log(userContext.user);
+                navigate("/manager");                
             }
        } catch (error) {
             console.log(error.response.status)
             if (error.response.status >= 500) setMessage("Estamos com um problema no servidor, por favor, tente mais tarde.")
             if (error.response.status === 401) setMessage("Credenciais inválidas, tente novamente.")
-            
+            userContext.setIsLogged(false)
        }
     }
 

@@ -9,10 +9,17 @@ import '../styles/login.css';
 import Button from 'react-bootstrap/Button';
 import Excel from '../service/WorkSheet';
 import {useNavigate} from "react-router-dom"; 
+import { useContext } from "react";
+import { useUserContext } from "../Context/UserContext";
+import NotFound from "./NotFound";
 
 
 const RegisterProducts = () => {
     const navigate = useNavigate();
+    const userContext = useUserContext();
+    
+    console.log(useContext.isLogged)
+    console.log(userContext.user)
     const handleChange = async (e) => {
         const file = e.target.files[0]    
         const product = await Excel(file)
@@ -20,8 +27,9 @@ const RegisterProducts = () => {
         console.log(product)
         navigate("/manegerProducts", {state: product})
     }
-
-    return <Helmet title='- Cadastrar Produtos'>
+    
+    return (userContext.isLogged) ? 
+    <Helmet title='- Cadastrar Produtos'>
         <CommonSection title='Cadastrar Produtos' />
         <section>
             <Container>
@@ -42,7 +50,7 @@ const RegisterProducts = () => {
                 </Row>
             </Container>
         </section>
-    </Helmet>
+    </Helmet> : <NotFound></NotFound>
 
 };
 

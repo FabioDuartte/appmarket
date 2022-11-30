@@ -26,19 +26,18 @@ const Routers = () => {
         <Route path='/market' element={<Market/>}/>
         <Route path='/login' element={<Login/>}/>
         <Route path='/register' element={<Register/>}/>
-        <Route path='/*' element={<NotFound/>}/>
-        {(userContext.isLogged) ? 
         
-        <>
-            <Route path='/registerProducts' element={<RegisterProducts/>}/>
-            <Route path='/manager' element={<Manager/>}/>
-            <Route path='/manegerMarket' element={<ManegerMarket/>}/>
-            <Route path='/manegerProducts' element={<ManegerProducts/>}/>
-        </>         
-        : <Route path='/*' element={<NotFound/>}/>
+        <Route path='/registerProducts' element={<RegisterProducts/>}/>
+        <Route path='/manager' element={<Manager/>}/>
+        <Route path='/manegerMarket' element={<ManegerMarket/>}/>
+        <Route path='/manegerProducts' element={<ManegerProducts/>}/>
+       
 
-        }   
-        {console.log(userContext.isLogged)}
+          
+       
+        <Route path='/*' element={<NotFound/>}/>
+
+
 
         
     </Routes>
