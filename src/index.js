@@ -6,12 +6,16 @@ import 'bootstrap/dist/css/bootstrap.css';
 import 'remixicon/fonts/remixicon.css';
 import './index.css';
 import { BrowserRouter as Router } from 'react-router-dom';
+import UserContext from './Context/UserContext';
+
 //import Routers from './routes/Routers'
 
-ReactDOM.render(
+ReactDOM.render(  
   <React.StrictMode>
     <Router>
-      <App />
+      <UserContext>
+        <App />
+      </UserContext>
     </Router>
   </React.StrictMode>,
   document.getElementById("root")

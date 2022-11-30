@@ -9,13 +9,26 @@ import '../styles/login.css';
 import Button from 'react-bootstrap/Button';
 import { useState } from "react";
 import UserService from "../service/UserService"
+import {useNavigate} from "react-router-dom";
+import { useUserContext } from "../Context/UserContext";
 
 const Login = () => {
-
+    
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-
-
+    const [message, setMessage] = useState("")
+    const navigate = useNavigate();
+    
+    const userContext = useUserContext();
+    const initialUser = {        
+        email: "",
+        senha: "",
+        market: {
+            nome: "",
+            cep: "",
+            cnpj: ""
+        }      
+    }
 
     function handleChangeEmail(e) {
         setEmail(e.target.value)
@@ -24,44 +37,36 @@ const Login = () => {
     function handleChangePassword(e) {
         setPassword(e.target.value)
     }
-      
-    async function handleSubimit(e){
-        const { data } = await UserService.autenticate(email, password)
-        const user = (data.data) ? data.data : null 
-        console.log(user)
-       
-        if (user != null ) {
-            //TODO: adicionar valor do user a uma state global 
-            //TODO: redirecionar para a pag de gerencia com as opções de usario logado  
-            window.location.href = "http://localhost:3000/home"
-        
-        }
-        else {      
-            //TODO: retornar para a pag de login.
-            window.location.href = "http://localhost:3000/login"
-            //TODO limpar a variaveis de email, senha.
-            email = null;
-            password = null;
-             //TODO mensg de erro
-            alert("Email ou senha incorreto\Caso esqueceu email ou senha click em Esqueci a senha");
-
-       
-        }
-        
-        
-
-
-    }
-  
    
+    async function handleSubimit(e){
+        try {
+            const credentials = {email: email, senha:password}  
+            const { data } = await UserService.autenticate( credentials)           
+            const user = (data) ? data : null 
+            if (user) {
+                userContext.setUser(user);          
+                userContext.setIsLogged(true);          
+                navigate("/manager");
+                console.log(userContext.user);
+            }
+       } catch (error) {
+            console.log(error.response.status)
+            if (error.response.status >= 500) setMessage("Estamos com um problema no servidor, por favor, tente mais tarde.")
+            if (error.response.status === 401) setMessage("Credenciais inválidas, tente novamente.")
+            
+       }
+    }
 
     return <Helmet title='- login'>
         <CommonSection title='login' />
         <section>
             <Container>
                 <Row>
+                    <div>
+                        {message}
+                    </div>
                     <Col lg='6' md='6' sm='12' className="m-auto">
-                        <Form action="#" className="form">
+                        <Form action="#" className="form">                            
                             <FormGroup className="input">
                                 <Label for="exampleEmail" hidden>Email</Label>
                                 <Input onChange={handleChangeEmail} value={email}type="email" name="email" id="exampleEmail" placeholder="Email" />
