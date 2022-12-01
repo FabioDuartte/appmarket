@@ -8,16 +8,8 @@ import Category from "../components/UI/category/Category";
 import ProductCard from "../components/UI/ProductCard/ProductCard";
 import { Link } from 'react-router-dom';
 import products from "../assets/Data/products";
-import { useUserContext } from "../Context/UserContext";
-
-
-
-
-
 
 const Home = () => {
-
-    const userContext = useUserContext();
 
     // const [category, setCategory] = useState("Listar Todos")
     // const [allProducts, setAllProducts] = useState(products)
@@ -48,7 +40,6 @@ const Home = () => {
     return (<Helmet title=" - Home">
 
         <section>
-            {/* {console.log(userContext.user)} */}
             <Container>
                 <Row>
                     <Col lg="6" md="6">

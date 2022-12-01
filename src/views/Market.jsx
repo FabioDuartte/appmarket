@@ -4,7 +4,6 @@ import CommonSection from "../components/UI/commomSection/CommonSection";
 import { Container, Row, Col, Button } from "reactstrap";
 import markets from '../assets/Data/markets';
 import MarketCard from "../components/UI/marketCard/marketCard";
-import ReactPaginate from 'react-paginate';
 import '../styles/marketCard.css';
 import '../styles/pagination.css';
 import Service from '../service/MarketService';
@@ -53,19 +52,6 @@ const Market = () => {
     useEffect(() => {
         fetchMarkets();
     }, [isAbc, pageNumber, itensNoTotal])
-
-
-
-    // const productPerPage = 8
-    // const visitedPage = pageNumber * productPerPage
-    // const displayPage = searchedProduct.slice(visitedPage, visitedPage + productPerPage)
-
-    // const pageCount = Math.ceil(searchedProduct.length / productPerPage)
-
-    // const changePage = ({selected}) =>{
-    //     setPagNumber(selected)
-    // }
-
 
     return(
         <Helmet title=" - Produtos">

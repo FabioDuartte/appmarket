@@ -10,7 +10,6 @@ import Button from 'react-bootstrap/Button';
 import { useState } from "react";
 import UserService from "../service/UserService"
 import {useNavigate} from "react-router-dom";
-import { useUserContext } from "../Context/UserContext";
 
 const Login = () => {
     
@@ -18,17 +17,6 @@ const Login = () => {
     const [password, setPassword] = useState("");
     const [message, setMessage] = useState("")
     const navigate = useNavigate();
-    
-    const userContext = useUserContext();
-    const initialUser = {        
-        email: "",
-        senha: "",
-        market: {
-            nome: "",
-            cep: "",
-            cnpj: ""
-        }      
-    }
 
     function handleChangeEmail(e) {
         setEmail(e.target.value)
@@ -42,17 +30,17 @@ const Login = () => {
         try {
             const credentials = {email: email, senha:password}  
             const { data } = await UserService.autenticate( credentials)           
-            const user = (data) ? data : null 
-            if (user) {
-                userContext.setUser(user);          
-                userContext.setIsLogged(true);          
-                navigate("/manager");                
+            const user = (data.user) ? data : null
+            const token = data?.token;
+            console.log(token, user);
+            if (user && token) {
+                // TODO: Salvar token no local storage
+                navigate("/manager", { replace: true });
             }
        } catch (error) {
             console.log(error.response.status)
             if (error.response.status >= 500) setMessage("Estamos com um problema no servidor, por favor, tente mais tarde.")
             if (error.response.status === 401) setMessage("Credenciais inválidas, tente novamente.")
-            userContext.setIsLogged(false)
        }
     }
 

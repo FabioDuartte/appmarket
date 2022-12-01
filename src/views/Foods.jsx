@@ -4,7 +4,6 @@ import CommonSection from "../components/UI/commomSection/CommonSection";
 import { Container, Row, Col, Button } from "reactstrap";
 import products from '../assets/Data/products';
 import ProductCard from '../components/UI/ProductCard/ProductCard';
-import ReactPaginate from 'react-paginate';
 import '../styles/foods.css';
 import '../styles/pagination.css';
 import Service from '../service/ProductsService';
