@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Helmet from '../components/Helmet/Helmet';
 import CommonSection from '../components/UI/commomSection/CommonSection';
 // import { Link } from 'react-router-dom';
@@ -9,19 +9,26 @@ import '../styles/login.css';
 import Button from 'react-bootstrap/Button';
 import Excel from '../service/WorkSheet';
 import {useNavigate} from "react-router-dom"; 
+import NotFound from "./NotFound";
 
 
 const RegisterProducts = () => {
     const navigate = useNavigate();
+
     const handleChange = async (e) => {
         const file = e.target.files[0]    
         const product = await Excel(file)
         
         console.log(product)
-        navigate("/manegerProducts", {state: product})
+        navigate("/manegerProducts", {replace: true, state: product})
     }
 
-    return <Helmet title='- Cadastrar Produtos'>
+    // useEffect(() => {
+    //     fetchUser();
+    // }, [])
+
+    return (true) ? 
+    <Helmet title='- Cadastrar Produtos'>
         <CommonSection title='Cadastrar Produtos' />
         <section>
             <Container>
@@ -42,7 +49,7 @@ const RegisterProducts = () => {
                 </Row>
             </Container>
         </section>
-    </Helmet>
+    </Helmet> : <NotFound></NotFound>
 
 };
 
