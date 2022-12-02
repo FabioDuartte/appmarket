@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import Helmet from '../components/Helmet/Helmet';
 import CommonSection from "../components/UI/commomSection/CommonSection";
 import { Container, Row, Col, Button } from "reactstrap";
@@ -6,9 +6,9 @@ import ManegerProcuctItems from '../components/UI/ManegerProductItems/manegerPro
 import '../styles/foods.css';
 import '../styles/pagination.css';
 import '../styles/paginationFM.css';
-import { useEffect } from "react";
 import Service from '../service/ProductsService';
 import {useLocation} from "react-router-dom"
+import NotFound from "./NotFound";
 
 const ManegerProducts = () => {
     const [searchTerm, setSearchTerm] = useState('');   
@@ -18,20 +18,76 @@ const ManegerProducts = () => {
     const [size, setSize] = useState(16);
     const [busca, setBusca] = useState("");
     const [products, setProducts] = useState([])
+    const [isValidSession, setIsValidSession] = useState(false);
+    const [user, setUser] = useState({})
+
+    const results = { user: {
+        authenticated: true,
+        id: 1,
+        email: "email@email.com",
+        data: "2022-12-01T22:29:01.000Z",
+        market: {
+            id: 1,
+            nome: "MultiMarket",
+            cep: "11111222",
+            cnpj: "123456789"
+        }
+    },
+        token: "1978fd5e-d8ba-41dc-850e-a5ac786ce4f5"
+    }
+    
+    const result = { data : { data : 
+            [
+                {
+                    "nome": "Salada mista",
+                    "preco": 2,
+                    "cesta": false,
+                    "categorieId": 1,
+                    "marketId": 1
+                    
+                },
+                {
+                    "nome": "Pera",
+                    "preco": 2,
+                    "cesta": false,
+                    "categorieId": 1,
+                    "marketId": 1
+                },
+                {
+                    "nome": "crack",
+                    "preco": 2,
+                    "cesta": true,
+                    "categorieId": 1,
+                    "marketId": 1,
+                }
+            ]
+    }
+    }
     
 
+    const fetchUser = async () => {           
+        const token = localStorage.getItem("key")  // Token do local storage         
+        // const results = await UserService.verifyToken(token);
+        if (token === results.token){
+            setUser(results)
+            setIsValidSession(!!results);
+        } else console.log("não funcionou")
+        console.log("entrou")
+    }
+
     const fetchManegerProducts = async () => {
+        console.log("entrou2")
         try {
             const pagination = {
                 size: size,
                 orderby: (isPrice) ? "preco" : "nome",
                 direction: "ASC",
                 page: pageNumber ,
-                search: busca,
+                search: busca,                
             }
 
-            const markets = Service.getProducts(pagination);
-            const data = await markets;
+            // const result = Service.getProducts(pagination);
+            const data = result;
             setProducts(data.data.data)            
             setItensNoTotal(data.data.itensNoTotal)
             console.log(data.data.data)
@@ -43,11 +99,15 @@ const ManegerProducts = () => {
     }
     
     useEffect(() => {        
-        fetchManegerProducts();
+        fetchUser();
+    }, [])
+
+    useEffect(() => {                       
+       fetchManegerProducts() 
     }, [isPrice, pageNumber, itensNoTotal])
 
 
-    return(
+    return(isValidSession) ? 
         <Helmet title=" - Gerenciar Produtos">
             <CommonSection title="Gerenciar Produtos"/>          
 
@@ -76,7 +136,6 @@ const ManegerProducts = () => {
                             <div>Não há produto cadastrado </div>
                         }
 
-                       
 
                         <div>
                             <div className="pagination">                            {
@@ -97,11 +156,7 @@ const ManegerProducts = () => {
                     </Row>
                 </Container>
             </section>
-        </Helmet>
-
-    )
-    
-    
+        </Helmet> : <NotFound></NotFound>
 };
 
 export default ManegerProducts;

@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Helmet from '../components/Helmet/Helmet';
 import CommonSection from '../components/UI/commomSection/CommonSection';
 // import { Link } from 'react-router-dom';
@@ -13,6 +13,38 @@ import NotFound from "./NotFound";
 
 
 const RegisterProducts = () => {
+
+    const result = { user: {
+        authenticated: true,
+        id: 1,
+        email: "email@email.com",
+        data: "2022-12-01T22:29:01.000Z",
+        market: {
+            id: 1,
+            nome: "MultiMarket",
+            cep: "11111222",
+            cnpj: "123456789"
+        }
+    },
+        token: "1978fd5e-d8ba-41dc-850e-a5ac786ce4f5"
+    }
+
+    const [isValidSession, setIsValidSession] = useState(false);
+    const [user, setUser] = useState({})
+
+    const fetchUser = async () => {           
+        const token = localStorage.getItem("key")  // Token do local storage         
+        // const result = await UserService.verifyToken(token);
+        if (token === result.token){
+            setUser(result)
+            setIsValidSession(!!result);
+        } else console.log("não funcionou")
+    }
+
+    useEffect( async () => {
+        await fetchUser()
+    }, [])
+
     const navigate = useNavigate();
 
     const handleChange = async (e) => {
@@ -23,11 +55,8 @@ const RegisterProducts = () => {
         navigate("/manegerProducts", {replace: true, state: product})
     }
 
-    // useEffect(() => {
-    //     fetchUser();
-    // }, [])
-
-    return (true) ? 
+  
+    return (isValidSession) ? 
     <Helmet title='- Cadastrar Produtos'>
         <CommonSection title='Cadastrar Produtos' />
         <section>

@@ -1,13 +1,11 @@
-import React, { useRef } from "react";
-
+import React, { useRef, useEffect, useState } from "react";
 // import { Container } from "reactstrap"
 import logo from '../../assets/logo.png'
 import { NavLink, Link } from 'react-router-dom'
 import Dropdown from 'react-bootstrap/Dropdown';
 import { Container, Row, Col, Button } from 'reactstrap';
-
-
-
+import UserService from "../../service/UserService";
+import {useNavigate} from "react-router-dom";
 
 const navLinks = [
     {
@@ -30,10 +28,33 @@ const navLinks = [
 
 const Header = () => {
     const menuRef = useRef(null)
-    const toggleMenu = () => menuRef.current.classList.toggle('showMenu')
+    // const toggleMenu = () => menuRef.current.classList.toggle('showMenu')
+    const [autenticated, setAutenticated] = useState(false);
+    const navigate = useNavigate();
 
+    const isLogged = () => { 
+        const check = localStorage.getItem("autenticated")
+        if(check){
+            setAutenticated(true)            
+        }
+    }
+    
+    const logout = async () => {
+       const token = localStorage.getItem("autenticated");
+    // const result = await UserService.verifyToken(token);
+    // const result = await UserService.logout(token);
+       localStorage.removeItem("autenticated")
+       localStorage.removeItem("key")
+       navigate("/home", { replace: true });
+        
+    }
+
+    useEffect( () => {
+        isLogged();
+    }, [autenticated])
 
     return (<header className="header">
+        
         <Container>
             <div className="nav_wrapper d-flex align-items-center justify-content-between">
                 <div className="logo">
@@ -81,12 +102,19 @@ const Header = () => {
                             </Dropdown.Toggle>
 
                             <Dropdown.Menu open>
-                                <Dropdown.Item href="/login">Login</Dropdown.Item>
-                                <Dropdown.Item href="/registerProducts">Cadastrar Produtos</Dropdown.Item>
-                                <Dropdown.Item href="/register">Criar uma Conta</Dropdown.Item>
-                                <Dropdown.Item href="/manager">Gerenciar</Dropdown.Item>
-                                <Dropdown.Divider />                    
-                                <Dropdown.Item href="#/action-2">Sair</Dropdown.Item>
+                                {(autenticated) ?                                
+                                    <>
+                                                                     
+                                        <Dropdown.Item href="/registerProducts">Cadastrar Produtos</Dropdown.Item>                                        
+                                        <Dropdown.Item href="/manager">Gerenciar</Dropdown.Item>
+                                        <Dropdown.Divider />                    
+                                        <Dropdown.Item onClick={logout}>Sair</Dropdown.Item>
+                                    </> : 
+                                    <>
+                                        <Dropdown.Item href="/login">Login</Dropdown.Item>
+                                        <Dropdown.Item href="/register">Criar uma Conta</Dropdown.Item>
+                                    </>
+                                } 
                             </Dropdown.Menu>
                         </Dropdown>
                     </span>
