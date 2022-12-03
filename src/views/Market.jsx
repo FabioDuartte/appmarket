@@ -67,7 +67,6 @@ const Market = () => {
                                  value={busca}
                                  onChange={(e)=> setBusca(e.target.value)}/>           
                                  <span onClick={() => fetchMarkets(busca)}><i class="ri-search-line" ></i></span>
-                                
                             </div>
                         </Col>
                         <Col lg="6" md="6" sm="6" className="mb-5">

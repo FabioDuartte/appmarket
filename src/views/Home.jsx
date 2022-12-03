@@ -1,5 +1,6 @@
 import React ,{useState, useEffect} from "react";
 import Helmet from '../components/Helmet/Helmet';
+import Header from "../components/Header/Header";
 import heroImg from '../assets/hero.png';
 import '../styles/bannerHome.css';
 import '../styles/home.css'
@@ -10,35 +11,9 @@ import { Link } from 'react-router-dom';
 import products from "../assets/Data/products";
 
 const Home = () => {
-
-    // const [category, setCategory] = useState("Listar Todos")
-    // const [allProducts, setAllProducts] = useState(products)
-
-    // useEffect (()=> {
-    //     if(category === "Listar Todos"){
-    //         setAllProducts(products)
-    //     }
-    //     if(category === 'Hortifruit'){
-    //         const filteredProducts = products.filter(item=> item.category === 'Hortifruit')
-    //         setAllProducts(filteredProducts)
-    //     }
-    //     if(category === 'Carnes'){
-    //         const filteredProducts = products.filter(item=> item.category === 'Carnes')
-    //         setAllProducts(filteredProducts)
-    //     }
-    //     if(category === 'Padaria'){
-    //         const filteredProducts = products.filter(item=> item.category === 'Padaria')
-    //         setAllProducts(filteredProducts)
-    //     }
-    //     if(category === 'Congelados'){
-    //         const filteredProducts = products.filter(item=> item.category === 'Congelados')
-    //         setAllProducts(filteredProducts)
-    //     }
-    // },[category])
-
     
-    return (<Helmet title=" - Home">
-
+    return (
+        <Helmet title=" - Home">
         <section>
             <Container>
                 <Row>
@@ -114,6 +89,7 @@ const Home = () => {
         </section> */}
 
     </Helmet>
+   
     )
 };
 
