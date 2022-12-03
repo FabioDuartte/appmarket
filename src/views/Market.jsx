@@ -9,7 +9,7 @@ import '../styles/pagination.css';
 import Service from '../service/MarketService';
 import { useEffect } from "react";
 import '../styles/paginationFM.css';
-
+import Header from "../components/Header/Header";
 
 
 const Market = () => {
@@ -55,7 +55,8 @@ const Market = () => {
 
     return(
         <Helmet title=" - Produtos">
-            <CommonSection title="Mercados"/>            
+            <Header />
+            <CommonSection title="Mercados"/>
             <section>
                 <Container>
                     <Row>

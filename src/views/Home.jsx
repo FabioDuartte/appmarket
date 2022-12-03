@@ -10,12 +10,16 @@ import ProductCard from "../components/UI/ProductCard/ProductCard";
 import { Link } from 'react-router-dom';
 import products from "../assets/Data/products";
 
+
 const Home = () => {
     
     return (
-        <Helmet title=" - Home">
+    
+    <Helmet title=" - Home" >
         <section>
+            <Header />
             <Container>
+               
                 <Row>
                     <Col lg="6" md="6">
                         <div className="heroContent">
@@ -26,7 +30,7 @@ const Home = () => {
 
                             <div className="heroBtns d-flex align-items-center gap-5">
                                 <button className="orderBtn d-flex align-items-center justify-content-between">
-                                    Cestas Básicas <i class="ri-arrow-right-s-line"></i>
+                                    Cestas Básicas <i className="ri-arrow-right-s-line"></i>
                                 </button>
                                 <button className="allFoods-btn"><Link to='/foods'>Confira nossas promoções</Link></button>
                             </div>
@@ -61,35 +65,9 @@ const Home = () => {
                 </Row>
             </Container>
         </section>
-
-        {/* <section>
-            <Container>
-                <Row>
-                    <Col lg='12' className="text-center">
-                        <h2>Os mais baratos</h2>
-                    </Col>
-                    <Col lg='12'>
-                        <div className="foodCategory d-flex align-items-center justify-content-center gap-5">
-                            <button className= {`allBtn ${category === 'Listar Todos' ? 'foodBtnActive' : ''  }`} onClick={() => setCategory("Listar Todos")}>Listar todos</button>
-                            <button className= {`d-flex align-items-center gap-2 ${category === 'Hortifruit' ? 'foodBtnActive' : ''  }`} onClick={() => setCategory("Hortifruit")}>Hortifruit</button>
-                            <button className= {`d-flex align-items-center gap-2 ${category === 'Carnes' ? 'foodBtnActive' : ''  }`} onClick={() => setCategory("Carnes")}>Carnes</button>
-                            <button className= {`d-flex align-items-center gap-2 ${category === 'Padaria' ? 'foodBtnActive' : ''  }`} onClick={() => setCategory("Padaria")}>Padaria</button>
-                            <button className= {`d-flex align-items-center gap-2 ${category === 'Congelados' ? 'foodBtnActive' : ''  }`} onClick={() => setCategory("Congelados")}>Congelados</button>
-                        </div>
-                    </Col>
-
-                    {allProducts.map((item)=>(
-                        <Col lg='3' md='4'key={item.id} className="mt-5">
-                        <ProductCard item={item} />
-                    </Col>
-                    ))}
-                    
-                </Row>
-            </Container>
-        </section> */}
-
+        
     </Helmet>
-   
+  
     )
 };
 

@@ -10,24 +10,10 @@ import Button from 'react-bootstrap/Button';
 import { useState } from "react";
 import UserService from "../service/UserService"
 import {useNavigate} from "react-router-dom";
+import Header from "../components/Header/Header";
 
 const Login = () => {
-
-    const data = { user: {
-        authenticated: true,
-        id: 1,
-        email: "email@email.com",
-        data: "2022-12-01T22:29:01.000Z",
-        market: {
-            id: 1,
-            nome: "MultiMarket",
-            cep: "11111222",
-            cnpj: "123456789"
-        }
-    },
-        token: "1978fd5e-d8ba-41dc-850e-a5ac786ce4f5"
-    }
-    
+ 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [message, setMessage] = useState("")
@@ -44,7 +30,7 @@ const Login = () => {
     async function handleSubimit(e){
         try {
             const credentials = {email: email, senha:password}  
-            // const { data } = await UserService.autenticate( credentials)           
+            const { data } = await UserService.autenticate( credentials)           
             const user = (data.user) ? data : null
             const token = data?.token;
             console.log(token, user);
@@ -61,9 +47,12 @@ const Login = () => {
        }
     }
 
-    return <Helmet title='- login'>
-        <CommonSection title='login' />
-        <section>
+    return (
+        
+    <Helmet title='- login'>
+        <Header />
+        <CommonSection title='login' />         
+        <section>        
             <Container>
                 <Row>
                     <div>
@@ -95,7 +84,7 @@ const Login = () => {
             </Container>
         </section>
     </Helmet>
-
+    )
 };
 
 export default Login;

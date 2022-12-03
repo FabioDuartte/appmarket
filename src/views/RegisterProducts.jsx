@@ -10,27 +10,13 @@ import Button from 'react-bootstrap/Button';
 import Excel from '../service/WorkSheet';
 import {useNavigate} from "react-router-dom"; 
 import NotFound from "./NotFound";
+import UserService from '../service/UserService';
+import Header from "../components/Header/Header";
 import ManegerProcuctItems from '../components/UI/ManegerProductItems/manegerProductItems';
-
-
 
 const RegisterProducts = () => {
 
-    const result = { user: {
-        authenticated: true,
-        id: 1,
-        email: "email@email.com",
-        data: "2022-12-01T22:29:01.000Z",
-        market: {
-            id: 1,
-            nome: "MultiMarket",
-            cep: "11111222",
-            cnpj: "123456789"
-        }
-    },
-        token: "1978fd5e-d8ba-41dc-850e-a5ac786ce4f5"
-    }
-
+  
     const [isValidSession, setIsValidSession] = useState(false);
     const [pageNumber, setPageNumber] = useState(0);
     const [itensNoTotal, setItensNoTotal] = useState(0);
@@ -42,39 +28,14 @@ const RegisterProducts = () => {
 
 
     const fetchUser = async () => {           
-        const token = localStorage.getItem("key")  // Token do local storage         
-        // const result = await UserService.verifyToken(token);
-        if (token === result.token){
-            setUser(result)
-            setIsValidSession(!!result);
-        } else console.log("não funcionou")
-    }
-
-    const fetchManegerProducts = async () => {
-        console.log("entrou2")
-        try {
-            const pagination = {
-                size: size,
-                orderby: (isPrice) ? "preco" : "nome",
-                direction: "ASC",
-                page: pageNumber ,
-                search: busca,                
-            }
-
-            // const result = Service.getProducts(pagination);
-            const data = result;
-            setProducts(data.data.data)            
-            setItensNoTotal(data.data.itensNoTotal)
-            console.log(data.data.data)
-            console.log(data.data.itensNoTotal)
-
-        } catch (error) {   
-            console.log(error)    
-        }
+        const token = localStorage.getItem("key")  // Token do local storage
+        const result = await UserService.verifyToken(token);
+        setUser(result);
+        setIsValidSession(!!result);
     }
 
     useEffect(() => {
-         fetchUser()
+        fetchUser()
     }, [])
 
     const navigate = useNavigate();
@@ -88,8 +49,9 @@ const RegisterProducts = () => {
     }
 
   
-    return (isValidSession) ? 
+    return ( 
     <Helmet title='- Cadastrar Produtos'>
+        <Header />
         <CommonSection title='Cadastrar Produtos' />
             <section>
                 <Container>
@@ -143,8 +105,8 @@ const RegisterProducts = () => {
                 </section>
             </Container>
         </section>
-    </Helmet> : <NotFound></NotFound>
-
+    </Helmet> 
+    )
 
 
 };

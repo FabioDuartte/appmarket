@@ -8,7 +8,7 @@ import '../styles/foods.css';
 import '../styles/pagination.css';
 import Service from '../service/ProductsService';
 import { useEffect } from "react";
-
+import Header from "../components/Header/Header";
 import '../styles/paginationFM.css'
 
 
@@ -26,8 +26,6 @@ const Foods = () => {
     const [itensNoTotal, setItensNoTotal] = useState(0);
     const [size, setSize] = useState(16);
 
-          
-
     const fetchProducts = async () => {
         const pagination = {
             size: size,
@@ -43,7 +41,6 @@ const Foods = () => {
         setItensNoTotal(data.data.itensNoTotal)
         console.log(data.data.data)
         console.log(data.data.itensNoTotal)
-        
     }
 
     useEffect(() => {
@@ -52,8 +49,8 @@ const Foods = () => {
 
     return(
         <Helmet title=" - Produtos">
-            <CommonSection title="Produtos"/>
-            
+            <Header />
+            <CommonSection title="Produtos"/>           
             <section>
                 <Container>
                     <Row>
