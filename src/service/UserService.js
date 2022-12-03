@@ -21,11 +21,11 @@ const autenticate = ({ email, senha }) => {
 }
 
 const verifyToken = (token) => {
-    return AxiosInstance?.post(`/user/verifyToken`, token);
+    return AxiosInstance?.post(`/user/verifyToken`, {token});
 }
 
 const logout = (token) => {
-    return AxiosInstance?.post(`/user/logout`, token);
+    return AxiosInstance?.post(`/user/logout`, {token});
 }
 
 export default {

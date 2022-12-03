@@ -8,7 +8,7 @@ import '../styles/foods.css';
 import '../styles/pagination.css';
 import Service from '../service/ProductsService';
 import { useEffect } from "react";
-
+import Header from "../components/Header/Header";
 import '../styles/paginationFM.css'
 
 
@@ -51,9 +51,8 @@ const Foods = () => {
     }, [isPrice, pageNumber, itensNoTotal])
 
     return(
-        <Helmet title=" - Produtos">
-            <CommonSection title="Produtos"/>
-            
+        <Helmet title=" - Produtos">            
+            <CommonSection title="Produtos"/>           
             <section>
                 <Container>
                     <Row>

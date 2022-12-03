@@ -2,7 +2,7 @@ import React from "react";
 import { Container, Row, Col, ListGroup, ListGroupItem } from "reactstrap";
 import logo from '../../assets/logo.jpg'
 import '../../styles/footer.css'
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 
 
 
@@ -13,7 +13,7 @@ const Footer = () => {
             <Row>
                 <Col lg="3" md="4" sm="6">
                     <div className="logo footerLogo text-start">
-                        <Link to="/home"><img src={logo} alt="logo" /></Link>
+                        {/* <Link to="/home"><img src={logo} alt="logo" /></Link> */}
                         <h5>MultiMarket</h5>
                         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
                             Voluptatum, labore. Iure consequuntur,
@@ -41,7 +41,7 @@ const Footer = () => {
                         <ListGroupItem className="deliveryTimeItem border-0 ps-0">
                             <h5 className="footerTitle">Seja um de nossos associados</h5>
                             <div className="associate mt-5">                                
-                                <button><Link to='#'>Cadastrar</Link></button>
+                                {/* <button><Link to='#'>Cadastrar</Link></button> */}
                             </div>
                         </ListGroupItem>
                     </ListGroup>

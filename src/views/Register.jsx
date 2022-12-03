@@ -6,13 +6,13 @@ import { Container, Row, Col } from "reactstrap";
 import { FormGroup, Label, Input } from 'reactstrap';
 import '../styles/login.css';
 import Button from 'react-bootstrap/Button';
-
+import Header from "../components/Header/Header";
 import Form from 'react-bootstrap/Form';
 
 
 
 const Register = () => {
-    return <Helmet title='- Criar Uma Conta'>
+    return <Helmet title='- Criar Uma Conta'>        
         <CommonSection title='Criar Uma Conta' />
         <section>
             <Container>
