@@ -61,6 +61,7 @@ const ManegerMarket = () => {
 
     return(isValidSession) ? 
     <Helmet title='- Gerenciar Mercado'>
+        <Header />
         <CommonSection title='Gerenciar Mercado' />
         <section>
             <Container>

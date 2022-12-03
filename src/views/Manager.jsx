@@ -34,7 +34,8 @@ const Manager = () => {
     }, [])
 
     return (isValidSession) ? 
-        <Helmet title='-Editar Cadastrar Fornecedor'>            
+        <Helmet title='-Editar Cadastrar Fornecedor'>
+            <Header isValid={isValidSession} />
             <CommonSection title='Gerenciar' />
             <section>
                 <Container className="d-flex align-items-center justify-content-center gap-3">

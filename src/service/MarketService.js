@@ -4,7 +4,7 @@ const getMarkets = ({ size = 5, orderby = "nome", direction = "ASC", page = 0, s
     return AxiosInstance?.get(`/markets?size=${size}&orderby=${orderby}&direction=${direction}&page=${page}&nomeLike=${search}`);
 }
 
-const getMarketsById = ({id}) => {
+const getMarketsById = (id) => {
     return AxiosInstance?.get(`/markets/${id}`);
 }
 

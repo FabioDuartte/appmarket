@@ -20,14 +20,14 @@ const RegisterProducts = () => {
     const [user, setUser] = useState({})
 
     const fetchUser = async () => {           
-        const token = localStorage.getItem("key")  // Token do local storage         
+        const token = localStorage.getItem("key")  // Token do local storage
         const result = await UserService.verifyToken(token);
-        setUser(result)
+        setUser(result);
         setIsValidSession(!!result);
     }
 
-    useEffect( async () => {
-        await fetchUser()
+    useEffect(() => {
+        fetchUser()
     }, [])
 
     const navigate = useNavigate();
@@ -43,6 +43,7 @@ const RegisterProducts = () => {
   
     return (isValidSession) ? 
     <Helmet title='- Cadastrar Produtos'>
+        <Header />
         <CommonSection title='Cadastrar Produtos' />
         <section>
             <Container>

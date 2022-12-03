@@ -12,7 +12,8 @@ import Form from 'react-bootstrap/Form';
 
 
 const Register = () => {
-    return <Helmet title='- Criar Uma Conta'>        
+    return <Helmet title='- Criar Uma Conta'>
+        <Header />
         <CommonSection title='Criar Uma Conta' />
         <section>
             <Container>

@@ -33,15 +33,15 @@ const Header = (prop) => {
 
     const isLogged = () => { 
         const check = localStorage.getItem("autenticated")
-        if(check === "true"){
-            setAutenticated(true)            
+        if(check === "true") {
+            setAutenticated(true)
         }
     }
     
     const logout = async () => {
         try {
-            const token = localStorage.getItem("key");            
-            const result = await UserService.logout(token);
+            const token = localStorage.getItem("key");
+            const _ = await UserService.logout(token);
             localStorage.removeItem("autenticated");
             localStorage.removeItem("key");
             navigate("/home", { replace: true });
@@ -82,11 +82,11 @@ const Header = (prop) => {
                     <span className="user">
                         <Dropdown>
                             <Dropdown.Toggle variant="" id="dropdown-basic">
-                                <Link to='/login'><i class="ri-user-line"></i></Link>
+                                <i class="ri-user-line"></i>
                             </Dropdown.Toggle>
 
                             <Dropdown.Menu open>
-                                {(false) ?                                
+                                {(autenticated) ?                                
                                     <>
                                                                      
                                         <Dropdown.Item href="/registerProducts">Cadastrar Produtos</Dropdown.Item>                                        

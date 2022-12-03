@@ -42,7 +42,7 @@ const Home = () => {
     
     <Helmet title=" - Home" >
         <section>
-            
+            <Header />
             <Container>
                
                 <Row>

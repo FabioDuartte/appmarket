@@ -54,8 +54,9 @@ const Market = () => {
     }, [isAbc, pageNumber, itensNoTotal])
 
     return(
-        <Helmet title=" - Produtos">             
-            <CommonSection title="Mercados"/>            
+        <Helmet title=" - Produtos">
+            <Header />
+            <CommonSection title="Mercados"/>
             <section>
                 <Container>
                     <Row>

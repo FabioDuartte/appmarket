@@ -26,8 +26,6 @@ const Foods = () => {
     const [itensNoTotal, setItensNoTotal] = useState(0);
     const [size, setSize] = useState(16);
 
-          
-
     const fetchProducts = async () => {
         const pagination = {
             size: size,
@@ -43,7 +41,6 @@ const Foods = () => {
         setItensNoTotal(data.data.itensNoTotal)
         console.log(data.data.data)
         console.log(data.data.itensNoTotal)
-        
     }
 
     useEffect(() => {
@@ -51,7 +48,8 @@ const Foods = () => {
     }, [isPrice, pageNumber, itensNoTotal])
 
     return(
-        <Helmet title=" - Produtos">            
+        <Helmet title=" - Produtos">
+            <Header />
             <CommonSection title="Produtos"/>           
             <section>
                 <Container>
