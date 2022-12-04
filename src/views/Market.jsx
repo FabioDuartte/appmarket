@@ -4,13 +4,12 @@ import CommonSection from "../components/UI/commomSection/CommonSection";
 import { Container, Row, Col, Button } from "reactstrap";
 import markets from '../assets/Data/markets';
 import MarketCard from "../components/UI/marketCard/marketCard";
-import ReactPaginate from 'react-paginate';
 import '../styles/marketCard.css';
 import '../styles/pagination.css';
 import Service from '../service/MarketService';
 import { useEffect } from "react";
 import '../styles/paginationFM.css';
-
+import Header from "../components/Header/Header";
 
 
 const Market = () => {
@@ -54,22 +53,10 @@ const Market = () => {
         fetchMarkets();
     }, [isAbc, pageNumber, itensNoTotal])
 
-
-
-    // const productPerPage = 8
-    // const visitedPage = pageNumber * productPerPage
-    // const displayPage = searchedProduct.slice(visitedPage, visitedPage + productPerPage)
-
-    // const pageCount = Math.ceil(searchedProduct.length / productPerPage)
-
-    // const changePage = ({selected}) =>{
-    //     setPagNumber(selected)
-    // }
-
-
     return(
         <Helmet title=" - Produtos">
-            <CommonSection title="Mercados"/>            
+            <Header />
+            <CommonSection title="Mercados"/>
             <section>
                 <Container>
                     <Row>
@@ -81,7 +68,6 @@ const Market = () => {
                                  value={busca}
                                  onChange={(e)=> setBusca(e.target.value)}/>           
                                  <span onClick={() => fetchMarkets(busca)}><i class="ri-search-line" ></i></span>
-                                
                             </div>
                         </Col>
                         <Col lg="6" md="6" sm="6" className="mb-5">

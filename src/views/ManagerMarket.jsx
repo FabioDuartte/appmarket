@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Helmet from '../components/Helmet/Helmet';
 import CommonSection from '../components/UI/commomSection/CommonSection';
 import { Link } from 'react-router-dom';
@@ -6,9 +6,12 @@ import { Container, Row, Col } from "reactstrap";
 import { FormGroup, Label, Input } from 'reactstrap';
 import '../styles/login.css';
 import Button from 'react-bootstrap/Button';
-
 import Form from 'react-bootstrap/Form';
 import Swal from 'sweetalert2'
+import NotFound from './NotFound';
+import UserService from '../service/UserService';
+import Header from "../components/Header/Header";
+
 
 const salvarAlteracoes = () => {
 Swal.fire({
@@ -39,8 +42,26 @@ const excluirMercado = () => {
       })
 }
 
-const ManegerMarket = () => {
-    return <Helmet title='- Gerenciar Mercado'>
+const ManegerMarket = () => {    
+
+    const [isValidSession, setIsValidSession] = useState(false);
+    const [user, setUser] = useState({})
+
+    const fetchUser = async () => {           
+        const token = localStorage.getItem("key")  // Token do local storage         
+        const result = await UserService.verifyToken(token);
+        setUser(result)
+        setIsValidSession(!!result);
+    }
+
+    useEffect( () => {
+        fetchUser()
+    }, [])
+
+
+    return(isValidSession) ? 
+    <Helmet title='- Gerenciar Mercado'>
+        <Header />
         <CommonSection title='Gerenciar Mercado' />
         <section>
             <Container>
@@ -85,7 +106,7 @@ const ManegerMarket = () => {
                 </Row>
             </Container>
         </section>
-    </Helmet>
+    </Helmet> : <NotFound></NotFound>
 
 };
 
