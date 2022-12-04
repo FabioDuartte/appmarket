@@ -15,9 +15,7 @@ import {useNavigate} from "react-router-dom";
 
 
 const ManegerProducts = () => {
-    const [searchTerm, setSearchTerm] = useState('');   
     const [pageNumber, setPageNumber] = useState(0); 
-    const [isPrice, setIsPrice] = useState(false);
     const [itensNoTotal, setItensNoTotal] = useState(0);
     const [size, setSize] = useState(16);
     const [busca, setBusca] = useState("");
@@ -26,14 +24,13 @@ const ManegerProducts = () => {
     const [filter, setFilter] = useState(false)
     const [isValidSession, setIsValidSession] = useState(false);
     const [user, setUser] = useState({})
-    const navigate = useNavigate();
     
-    const fetchUser = async () => { 
+    const fetchUser = async () => {
         try {
-            console.log("entrou aqui")      
-            const token = localStorage.getItem("key")  // Token do local storage         
-            const result = await UserService.verifyToken(token);   
-            setUser(result)
+            console.log("entrou aqui")
+            const token = localStorage.getItem("key")  // Token do local storage
+            const result = await UserService.verifyToken(token);
+            setUser(result.data);
             setIsValidSession(true);
             return result
         } catch (error) {
@@ -74,7 +71,7 @@ const ManegerProducts = () => {
         <Helmet title=" - Gerenciar Produtos">
            
             <Header />
-            <CommonSection title="Gerenciar Produtos"/>          
+            <CommonSection title="Gerenciar Produtos"/>
 
              <section>
                  <Container>
@@ -84,7 +81,7 @@ const ManegerProducts = () => {
                                  <input
                                  type="text"
                                  placeholder="Estou procurando por... "
-                                 value={busca}                                 
+                                 value={busca}
                                  onChange={(e)=> setBusca(e.target.value)}/>
                                 <span onClick={() => fetchProductsbyName(busca)}><i class="ri-search-line" ></i></span>
                             </div>
@@ -95,12 +92,12 @@ const ManegerProducts = () => {
                         
                         {
                         (filter) ?
-                        productsFilter.map((product) => ( 
+                        productsFilter.map((product) => (
                             <Col lg="3" md="4" sm="6" xs="6" key={product.id} className="mb-4">
-                            <ManegerProcuctItems item={product}/></Col>
+                            <ManegerProcuctItems item={product} /></Col>
                         )) :
                         (products) ?
-                            products.map((product) => ( 
+                            products.map((product) => (
                                 <Col lg="3" md="4" sm="6" xs="6" key={product.id} className="mb-4">
                                 <ManegerProcuctItems item={product}/></Col>
                             )) :

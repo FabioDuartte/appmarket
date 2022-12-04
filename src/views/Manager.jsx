@@ -24,7 +24,7 @@ const Manager = () => {
     const fetchUser = async () => {           
         const token = localStorage.getItem("key")  // Token do local storage         
         const result = await UserService.verifyToken(token);
-        setUser(result)
+        setUser(result.data)
         setIsValidSession(!!result);
     }
 

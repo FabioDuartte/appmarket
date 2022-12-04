@@ -1,6 +1,6 @@
 import AxiosInstance from "../config/CustomAxios.js";
 
-const getCategories = ({ size = 5, orderby = "nome", direction = "ASC", page = 0, search = "" }) => {
+const getCategories = (size = 200, orderby = "nome", direction = "ASC", page = 0, search = "") => {
     return AxiosInstance?.get(`/categories?size=${size}&orderby=${orderby}&direction=${direction}&page=${page}&nomeLike=${search}`);
 }
 

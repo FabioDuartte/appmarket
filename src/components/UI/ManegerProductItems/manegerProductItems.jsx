@@ -27,11 +27,11 @@ const excluirMercado = () => {
         }
       })
 }
-//a
 
 
 const ManegerProcuctItems = (props) => {
-    const {id, nome, image, preco  , market} = props.item;
+    const {id, nome, image, preco} = props.item;
+    const market = props.market
 
     return(
         
