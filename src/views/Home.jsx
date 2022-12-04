@@ -45,7 +45,9 @@ const Home = () => {
     // },[category])
 
     
-    return (<Helmet title=" - Home">
+    return (
+    
+    <Helmet title=" - Home">
 
         <section>
             {/* {console.log(userContext.user)} */}
@@ -124,6 +126,8 @@ const Home = () => {
 
     </Helmet>
     )
+
+        
 };
 
 export default Home;
