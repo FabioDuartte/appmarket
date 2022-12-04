@@ -87,8 +87,7 @@ const Header = (prop) => {
 
                             <Dropdown.Menu open>
                                 {(autenticated) ?                                
-                                    <>
-                                                                     
+                                    <>                   
                                         <Dropdown.Item href="/registerProducts">Cadastrar Produtos</Dropdown.Item>                                        
                                         <Dropdown.Item href="/manager">Gerenciar</Dropdown.Item>
                                         <Dropdown.Divider />                    

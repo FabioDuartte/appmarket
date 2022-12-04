@@ -30,7 +30,7 @@ function Routers() {
     const routers = [
         {
             path: "/", element: <Layout />, errorElement: <h1>Error</h1>, children: [{
-            path: "/home", element: <Home />, index: true},          
+            path: "/home", element: <Home />, index: true},
             { path: "/foods", element: <Foods /> },
             { path: "/market", element: <Market /> },
             { path: "/login", element: <Login /> },

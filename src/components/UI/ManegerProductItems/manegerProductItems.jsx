@@ -2,36 +2,45 @@ import React from "react";
 import productCard from '../../../styles/productCard.css';
 import { Link } from 'react-router-dom';
 import { Button } from "reactstrap";
-import closeCircleFill  from '../../../assets/closeCircleFill.png';
-import edi2line  from '../../../assets/edi2line.png';
 import Swal from 'sweetalert2'
+import closeCircleFill  from '../../../assets/closeCircleFill.png';
+import edi2line from '../../../assets/edi2line.png';
 import productImage from '../../../assets/productImagem.png'
-
-
-const excluirMercado = () => {
-    Swal.fire({
-        title: 'ATENÇÃO!',
-        text: "Tem certeza que deseja excluir este item?",
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'Sim, excluir'
-      }).then((result) => {
-        if (result.isConfirmed) {
-          Swal.fire(
-            'Item deletado!',
-            '',
-            'success'
-          )
-        }
-      })
-}
-
+import ProductsService from "../../../service/ProductsService";
 
 const ManegerProcuctItems = (props) => {
+    
     const {id, nome, image, preco} = props.item;
     const market = props.market
+    
+    const excluirMercado = () => {
+        Swal.fire({
+            title: 'ATENÇÃO!',
+            text: "Tem certeza que deseja excluir este item?",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Sim, excluir'
+        }).then(async (result) => {
+            if (result.isConfirmed) {
+                try {
+                    const result = await ProductsService.removeProduct(id)
+                    if (result === null) id = 0;
+                    await Swal.fire(
+                        'Item deletado!',
+                        '',
+                        'success'
+                    )
+                } catch (error) {
+                    console.log(error)
+                }
+                finally {
+                    window.location.reload()
+                }
+            }
+        })
+    }
 
     return(
         

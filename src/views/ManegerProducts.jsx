@@ -8,7 +8,7 @@ import '../styles/pagination.css';
 import '../styles/paginationFM.css';
 import Service from '../service/MarketService';
 import UserService from '../service/UserService';
-import {useLocation} from "react-router-dom"
+import {useLocation, Link} from "react-router-dom"
 import NotFound from "./NotFound";
 import Header from "../components/Header/Header";
 import {useNavigate} from "react-router-dom";
@@ -41,8 +41,8 @@ const ManegerProducts = () => {
     const fetchManegerProductsbyMarket = async () => {
         console.log("entrou2")
         try {
-            console.log(user.data.market.id)
-            const result = await Service.getMarketsById(user.data.market.id);
+            console.log(user.market.id)
+            const result = await Service.getMarketsById(user.market.id);
             setProducts(result.data.data.products)
         } catch (error) {
             console.log(error)
@@ -54,7 +54,6 @@ const ManegerProducts = () => {
         setProductsFilter(productsFilter);
         setFilter(true);
     }
-
     
     useEffect(  () => {        
          fetchUser(); 
@@ -87,19 +86,21 @@ const ManegerProducts = () => {
                             </div>
                         </Col>
                         <Col lg="6" md="6" sm="6" className="mb-5 w">
-                            <Button className="border:red">Cadastrar Produto</Button>
+                            <Link to="/registerProducts"><Button className="border:red">Cadastrar Produto</Button></Link>
                         </Col>
                         
                         {
                         (filter) ?
                         productsFilter.map((product) => (
                             <Col lg="3" md="4" sm="6" xs="6" key={product.id} className="mb-4">
-                            <ManegerProcuctItems item={product} /></Col>
+                                <ManegerProcuctItems item={product} />
+                            </Col>
                         )) :
                         (products) ?
                             products.map((product) => (
                                 <Col lg="3" md="4" sm="6" xs="6" key={product.id} className="mb-4">
-                                <ManegerProcuctItems item={product}/></Col>
+                                    <ManegerProcuctItems item={product}/>
+                                </Col>
                             )) :
                             <div>Não há produto cadastrado </div>
                         }
