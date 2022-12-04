@@ -93,13 +93,13 @@ const ManegerProducts = () => {
                         (filter) ?
                         productsFilter.map((product) => (
                             <Col lg="3" md="4" sm="6" xs="6" key={product.id} className="mb-4">
-                                <ManegerProcuctItems item={product} />
+                                <ManegerProcuctItems item={product} market={user.market} />
                             </Col>
                         )) :
                         (products) ?
                             products.map((product) => (
                                 <Col lg="3" md="4" sm="6" xs="6" key={product.id} className="mb-4">
-                                    <ManegerProcuctItems item={product}/>
+                                    <ManegerProcuctItems item={product} market={user.market}/>
                                 </Col>
                             )) :
                             <div>Não há produto cadastrado </div>
