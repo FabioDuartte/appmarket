@@ -65,7 +65,7 @@ const ManegerProducts = () => {
     }, [user])
 
     if (!isValidSession) {
-        return <NotFound/>
+        return null
     }
     return(
         <Helmet title=" - Gerenciar Produtos">

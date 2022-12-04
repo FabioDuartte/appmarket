@@ -71,7 +71,7 @@ const Manager = () => {
                 </Container>
             </section>
         </Helmet> :
-        <NotFound></NotFound>
+        null
 
 };
 

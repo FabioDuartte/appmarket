@@ -106,7 +106,7 @@ const ManegerMarket = () => {
                 </Row>
             </Container>
         </section>
-    </Helmet> : <NotFound></NotFound>
+    </Helmet> : null
 
 };
 

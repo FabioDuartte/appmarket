@@ -46,7 +46,7 @@ const RegisterProducts = () => {
         setItensNoTotal(products.length)
     }
 
-    if (!isValidSession) return <NotFound />
+    if (!isValidSession) return null
     return (
     <Helmet title='- Cadastrar Produtos'>
         <Header />
